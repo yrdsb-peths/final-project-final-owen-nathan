@@ -19,7 +19,6 @@ public class Titlescreen extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);  
         setBackground("images/titleScreen.jpg");
-<<<<<<< HEAD
         prepare();
     }
     //start main world when space is pressed
@@ -35,9 +34,6 @@ public class Titlescreen extends World
      */
     private void prepare()
     {
-        Label label = new Label("100 Men Vs. 1 Gorilla", 50);
-        addObject(label,289,192);
-=======
         addObject(titleLabel, 300, 200);
         addObject(start, 300, 250);
     }
@@ -47,6 +43,5 @@ public class Titlescreen extends World
             MyWorld gameWorld = new MyWorld();
             Greenfoot.setWorld(gameWorld);
         }
->>>>>>> 360aeebb01491b68a9268cbd7783ba1f60ca8fe9
     }
 }
