@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Titlescreen extends World
 {
-
     Label titleLabel = new Label("Planet of Men", 80);
     Label start = new Label("Press space to start", 30);
     /**
