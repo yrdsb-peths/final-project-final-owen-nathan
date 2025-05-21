@@ -8,12 +8,26 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Gorilla extends Actor
 {
-    /**
-     * Act - do whatever the Gorilla wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private int speed = 4;
+
     public void act()
     {
-        // Add your action code here.
+        checkMovement();
+    }
+
+    private void checkMovement()
+    {
+        if (Greenfoot.isKeyDown("left")) {
+            setLocation(getX() - speed, getY());
+        }
+        if (Greenfoot.isKeyDown("right")) {
+            setLocation(getX() + speed, getY());
+        }
+        if (Greenfoot.isKeyDown("up")) {
+            setLocation(getX(), getY() - speed);
+        }
+        if (Greenfoot.isKeyDown("down")) {
+            setLocation(getX(), getY() + speed);
+        }
     }
 }
