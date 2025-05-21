@@ -25,8 +25,8 @@ public class Titlescreen extends World
     
     public void act() {
         if(Greenfoot.isKeyDown("space")) {
-            MyWorld gameWorld = new MyWorld();
-            Greenfoot.setWorld(gameWorld);
+            Cutscene1 cutscene = new Cutscene1();
+            Greenfoot.setWorld(cutscene);
         }
     }
 }
