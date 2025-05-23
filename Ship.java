@@ -1,6 +1,6 @@
 import greenfoot.*;
 
-public class Asteroid extends Actor {
+public class Ship extends Actor {
     public static int x = 0;
     
     public void act() {
@@ -15,12 +15,12 @@ public class Asteroid extends Actor {
         if(getWorld() instanceof Cutscene1 && getY() >= 399) {
             x = getX(); 
             getWorld().removeObject(this);
-            Greenfoot.setWorld(new CutsceneWorld());
+            Greenfoot.setWorld(new Tutorial());
             return;
         }
 
-        if(getWorld() instanceof CutsceneWorld && getY() >= 200) {
-            CutsceneWorld world = (CutsceneWorld) getWorld();
+        if(getWorld() instanceof Tutorial && getY() >= 200) {
+            Tutorial world = (Tutorial) getWorld();
             world.landed = true;
 
             int asteroidX = getX(); 
@@ -34,7 +34,7 @@ public class Asteroid extends Actor {
         }
     }
 
-    public Asteroid() {
+    public Ship() {
         GreenfootImage asteroid = new GreenfootImage("images/ship.png");
         asteroid.scale(60, 60);
         setImage(asteroid);

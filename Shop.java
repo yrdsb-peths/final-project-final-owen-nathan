@@ -20,5 +20,8 @@ public class Shop extends World
         
         Gorilla gorilla = new Gorilla();
         addObject(gorilla, 550, 350);
+        
+        Sword sword = new Sword();
+        addObject(sword, 575, 370);
     }
 }

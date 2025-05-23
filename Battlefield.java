@@ -1,9 +1,9 @@
 import greenfoot.*;
 
-public class MyWorld extends World {
+public class Battlefield extends World {
     public Label wasdLabel;
 
-    public MyWorld() {
+    public Battlefield() {
         super(600, 400, 1);
 
         GreenfootImage worldBG = new GreenfootImage("images/dgggoyk-fdd28b15-79e9-4a3d-a8bd-d7d966e77900.jpg");
