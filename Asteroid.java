@@ -6,21 +6,21 @@ public class Asteroid extends Actor {
     public void act() {
         setLocation(getX(), getY() + 3);
 
-        if (Greenfoot.isKeyDown("left")) {
+        if (Greenfoot.isKeyDown("a")) {
             move(-2);
-        } else if (Greenfoot.isKeyDown("right")) {
+        } else if (Greenfoot.isKeyDown("d")) {
             move(2);
         }
 
-        if (getWorld() instanceof Cutscene1 && getY() >= 399) {
+        if(getWorld() instanceof Cutscene1 && getY() >= 399) {
             x = getX(); 
             getWorld().removeObject(this);
-            Greenfoot.setWorld(new MyWorld());
+            Greenfoot.setWorld(new CutsceneWorld());
             return;
         }
 
-        if (getWorld() instanceof MyWorld && getY() >= 200) {
-            MyWorld world = (MyWorld) getWorld();
+        if(getWorld() instanceof CutsceneWorld && getY() >= 200) {
+            CutsceneWorld world = (CutsceneWorld) getWorld();
             world.landed = true;
 
             int asteroidX = getX(); 
@@ -35,8 +35,8 @@ public class Asteroid extends Actor {
     }
 
     public Asteroid() {
-        GreenfootImage asteroid = new GreenfootImage("images/asteroid.png");
-        asteroid.scale(40, 40);
+        GreenfootImage asteroid = new GreenfootImage("images/ship.png");
+        asteroid.scale(60, 60);
         setImage(asteroid);
     }
 }

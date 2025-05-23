@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 public class MyWorld extends World {
-    public boolean landed = false;
+    public Label wasdLabel;
 
     public MyWorld() {
         super(600, 400, 1);
@@ -13,7 +13,7 @@ public class MyWorld extends World {
         Cart cart = new Cart();
         addObject(cart, 25, 40);
         
-        Asteroid asteroid = new Asteroid();
-        addObject(asteroid, Asteroid.x, 0);
+        Gorilla gorilla = new Gorilla();
+        addObject(gorilla, 50, 50);
     }
 }
