@@ -43,7 +43,13 @@ public class Gorilla extends Actor
             handleMovement();
         }
         animateGorilla();
+
+        if (getWorld() instanceof MyWorld && getX() <= 0 && getY() <= 80) {
+            Greenfoot.setWorld(new Shop());
+            return;
+        }
     }
+
 
     public void checkPunchKey() {
         boolean spaceDown = Greenfoot.isKeyDown("space");
@@ -57,6 +63,7 @@ public class Gorilla extends Actor
 
         spacePressedLastFrame = spaceDown;
     }
+
 
     public void animateGorilla() {
         //If punching have a longer delay
