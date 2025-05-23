@@ -1,35 +1,47 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*; 
+
+//This is our hero that the player plays
 
 public class Gorilla extends Actor
 {
-    GreenfootImage[] idleRight = new GreenfootImage[3];
-    GreenfootImage[] idleLeft = new GreenfootImage[3];
+    GreenfootImage[] walkRight = new GreenfootImage[3];
+    GreenfootImage[] walkLeft = new GreenfootImage[3];
+    GreenfootImage[] punchRight = new GreenfootImage[3];
+    GreenfootImage[] punchLeft = new GreenfootImage[3];
 
-    // Direction the gorilla is facing
     String facing = "right";
     SimpleTimer animationTimer = new SimpleTimer();
-
+    boolean punching = false;
+    boolean spacePressedLastFrame = false;
     int imageIndex = 0;
     int speed = 4;
 
     public Gorilla() {
         for (int i = 0; i < 3; i++) {
-            idleRight[i] = new GreenfootImage("Gorilla_Walk" + i + ".png");
-            idleRight[i].scale(80, 80);
-        }
+            walkRight[i] = new GreenfootImage("Gorilla_Walk" + i + ".png");
+            walkRight[i].scale(80, 80);
 
-        for (int i = 0; i < idleLeft.length; i++) {
-            idleLeft[i] = new GreenfootImage("Gorilla_Walk" + i + ".png");
-            idleLeft[i].mirrorHorizontally();
-            idleLeft[i].scale(80, 80);
+            walkLeft[i] = new GreenfootImage("Gorilla_Walk" + i + ".png");
+            walkLeft[i].mirrorHorizontally();
+            walkLeft[i].scale(80, 80);
+
+            punchRight[i] = new GreenfootImage("Gorilla_Punch" + i + ".png");
+            punchRight[i].scale(110, 80);
+
+            punchLeft[i] = new GreenfootImage("Gorilla_Punch" + i + ".png");
+            punchLeft[i].mirrorHorizontally();
+            punchLeft[i].scale(110, 80);
         }
 
         animationTimer.mark();
-        setImage(idleRight[0]);
+        setImage(walkRight[0]);
     }
 
     public void act() {
-        handleMovement();
+        checkPunchKey();
+        if (!punching) {
+            handleMovement();
+        }
         animateGorilla();
 
         if (getWorld() instanceof MyWorld && getX() <= 0 && getY() <= 80) {
@@ -39,49 +51,83 @@ public class Gorilla extends Actor
     }
 
 
+    public void checkPunchKey() {
+        boolean spaceDown = Greenfoot.isKeyDown("space");
+
+        // Punch cannot be started the last frame and start again
+        if (spaceDown && !spacePressedLastFrame && !punching) {
+            punching = true;
+            imageIndex = 0;
+            animationTimer.mark();
+        }
+
+        spacePressedLastFrame = spaceDown;
+    }
+
+
     public void animateGorilla() {
-        if (animationTimer.millisElapsed() < 100) {
+        //If punching have a longer delay
+        int delay = punching ? 200 : 100;
+        if (animationTimer.millisElapsed() < delay) {
             return;
         }
         animationTimer.mark();
-        if (facing.equals("right")) {
-            setImage(idleRight[imageIndex]);
+
+        if (punching) {
+            if (facing.equals("right")) {
+                setImage(punchRight[imageIndex]);
+            } else {
+                setImage(punchLeft[imageIndex]);
+            }
+
+            imageIndex++;
+            if (imageIndex >= punchRight.length) {
+                punching = false;
+                imageIndex = 0;
+
+                // Reset to idle frame
+                if (facing.equals("right")) {
+                    setImage(walkRight[0]);
+                } else {
+                    setImage(walkLeft[0]);
+                }
+            }
         } else {
-            setImage(idleLeft[imageIndex]);
+            if (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("right") ||
+                Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("down")) {
+
+                if (facing.equals("right")) {
+                    setImage(walkRight[imageIndex]);
+                } else {
+                    setImage(walkLeft[imageIndex]);
+                }
+
+                imageIndex = (imageIndex + 1) % walkRight.length;
+            } else {
+                imageIndex = 0;
+                if (facing.equals("right")) {
+                    setImage(walkRight[0]);
+                } else {
+                    setImage(walkLeft[0]);
+                }
+            }
         }
-        imageIndex = (imageIndex + 1) % idleRight.length;
     }
 
     public void handleMovement() {
-        boolean moved = false;
-
         if (Greenfoot.isKeyDown("left")) {
             setLocation(getX() - speed, getY());
             facing = "left";
-            moved = true;
         }
         if (Greenfoot.isKeyDown("right")) {
             setLocation(getX() + speed, getY());
             facing = "right";
-            moved = true;
         }
         if (Greenfoot.isKeyDown("up")) {
             setLocation(getX(), getY() - speed);
-            moved = true;
         }
         if (Greenfoot.isKeyDown("down")) {
             setLocation(getX(), getY() + speed);
-            moved = true;
-        }
-
-        if (!moved) {
-            // Optional: pause animation if not moving
-            imageIndex = 0;
-            if (facing.equals("right")) {
-                setImage(idleRight[0]);
-            } else {
-                setImage(idleLeft[0]);
-            }
         }
     }
 }
