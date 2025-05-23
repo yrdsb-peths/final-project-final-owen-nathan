@@ -31,7 +31,13 @@ public class Gorilla extends Actor
     public void act() {
         handleMovement();
         animateGorilla();
+
+        if (getWorld() instanceof MyWorld && getX() <= 0 && getY() <= 80) {
+            Greenfoot.setWorld(new Shop());
+            return;
+        }
     }
+
 
     public void animateGorilla() {
         if (animationTimer.millisElapsed() < 100) {
