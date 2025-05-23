@@ -20,7 +20,7 @@ public class Titlescreen extends World
 
     public void Act(){
         if(Greenfoot.isKeyDown("space")){
-            MyWorld gameWorld = new MyWorld();
+            Battlefield gameWorld = new Battlefield();
             Greenfoot.setWorld(gameWorld);
         }
     }

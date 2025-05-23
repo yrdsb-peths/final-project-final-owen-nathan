@@ -23,7 +23,7 @@ public class Cutscene1 extends World
         
         addObject(text, 440, 380);
         
-        Asteroid asteroid = new Asteroid();
+        Ship asteroid = new Ship();
         addObject(asteroid, Greenfoot.getRandomNumber(600), 0);
     }
 }
