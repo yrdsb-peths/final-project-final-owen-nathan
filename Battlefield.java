@@ -2,7 +2,8 @@ import greenfoot.*;
 
 public class Battlefield extends World {
     public Label wasdLabel;
-
+    public static int level = 1;
+    
     public Battlefield() {
         super(600, 400, 1);
 

@@ -4,7 +4,7 @@ public class Ship extends Actor {
     public static int x = 0;
     
     public void act() {
-        setLocation(getX(), getY() + 3);
+        setLocation(getX(), getY() + 2);
 
         if (Greenfoot.isKeyDown("a")) {
             move(-2);
