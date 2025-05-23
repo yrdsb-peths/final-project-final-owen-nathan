@@ -19,6 +19,21 @@ public class Titlescreen extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);  
         setBackground("images/titleScreen.jpg");
+        prepare();
+    }
+    //start main world when space is pressed
+    public void Act(){
+        if(Greenfoot.isKeyDown("space")){
+            MyWorld gameWorld = new MyWorld();
+            Greenfoot.setWorld(gameWorld);
+        }
+    }
+    /**
+     * Prepare the world for the start of the program.
+     * That is: create the initial objects and add them to the world.
+     */
+    private void prepare()
+    {
         addObject(titleLabel, 300, 200);
         addObject(start, 300, 250);
     }
