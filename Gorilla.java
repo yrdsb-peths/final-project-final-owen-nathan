@@ -26,7 +26,7 @@ public class Gorilla extends Actor
             walkLeft[i].scale(80, 80);
 
             punchRight[i] = new GreenfootImage("Gorilla_Punch" + i + ".png");
-            punchRight[i].scale(1105, 80);
+            punchRight[i].scale(110, 80);
 
             punchLeft[i] = new GreenfootImage("Gorilla_Punch" + i + ".png");
             punchLeft[i].mirrorHorizontally();
