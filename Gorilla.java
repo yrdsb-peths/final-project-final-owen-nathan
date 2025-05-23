@@ -48,7 +48,23 @@ public class Gorilla extends Actor
             Greenfoot.setWorld(new Shop());
             return;
         }
+
+        if (getWorld() instanceof Shop && getX() >= 599 && getY() >= 350) {
+            Greenfoot.setWorld(new MyWorld());
+            return;
+        }
+        
+        if(getWorld() instanceof CutsceneWorld && (getX() >= 400 || getX() <= 200)) {
+            CutsceneWorld world = (CutsceneWorld) getWorld();
+            world.crossed = true;
+        }
+
+        if (getWorld() instanceof CutsceneWorld && getX() <= 0 && getY() <= 80) {
+            Greenfoot.setWorld(new Shop());
+            return;
+        }
     }
+
 
 
     public void checkPunchKey() {
@@ -93,8 +109,8 @@ public class Gorilla extends Actor
                 }
             }
         } else {
-            if (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("right") ||
-                Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("down")) {
+            if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") ||
+                Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("s")) {
 
                 if (facing.equals("right")) {
                     setImage(walkRight[imageIndex]);
@@ -115,18 +131,18 @@ public class Gorilla extends Actor
     }
 
     public void handleMovement() {
-        if (Greenfoot.isKeyDown("left")) {
+        if (Greenfoot.isKeyDown("a")) {
             setLocation(getX() - speed, getY());
             facing = "left";
         }
-        if (Greenfoot.isKeyDown("right")) {
+        if (Greenfoot.isKeyDown("d")) {
             setLocation(getX() + speed, getY());
             facing = "right";
         }
-        if (Greenfoot.isKeyDown("up")) {
+        if (Greenfoot.isKeyDown("w")) {
             setLocation(getX(), getY() - speed);
         }
-        if (Greenfoot.isKeyDown("down")) {
+        if (Greenfoot.isKeyDown("s")) {
             setLocation(getX(), getY() + speed);
         }
     }

@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Cutscene1 extends World
 {
-
+    Label text = new Label("a crash landing onto an unfamiliar planet...", 20);
     /**
      * Constructor for objects of class Cutscene1.
      * 
@@ -20,6 +20,8 @@ public class Cutscene1 extends World
         GreenfootImage earth = new GreenfootImage("images/earth.jpg");
         earth.scale(600, 400);
         setBackground(earth);
+        
+        addObject(text, 440, 380);
         
         Asteroid asteroid = new Asteroid();
         addObject(asteroid, Greenfoot.getRandomNumber(600), 0);
