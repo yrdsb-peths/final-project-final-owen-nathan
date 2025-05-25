@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Easiest enemy the regular human tha throws punches and dies upon 1 hit
+ * Easiest enemy the regular human that throws punches and dies upon 1 hit
  */
 public class Human1 extends Actor
 {
@@ -12,6 +12,8 @@ public class Human1 extends Actor
     int frame = 0;
     boolean isDead = false;
     boolean deathFinished = false;
+    
+    int speed = 2;  // movement speed
 
     public Human1() {
         for (int i = 0; i < 4; i++) {  
@@ -29,10 +31,30 @@ public class Human1 extends Actor
 
     public void act() {
         if (!isDead) {
+            moveTowardGorilla();
             punchLoop();
             checkGorillaPunch();
         } else {
             playDeathAnimation();
+        }
+    }
+    
+    private void moveTowardGorilla() {
+        World world = getWorld();
+        if (world == null) return;
+        java.util.List<Gorilla> gorillas = world.getObjects(Gorilla.class);
+        if (gorillas.isEmpty()) return;
+        Gorilla gorilla = gorillas.get(0);
+        
+        int dx = gorilla.getX() - getX();
+        int dy = gorilla.getY() - getY();
+        
+        if (Math.abs(dx) > speed) {
+            setLocation(getX() + (dx > 0 ? speed : -speed), getY());
+        }
+        
+        if (Math.abs(dy) > speed) {
+            setLocation(getX(), getY() + (dy > 0 ? speed : -speed));
         }
     }
 
