@@ -3,7 +3,7 @@ import greenfoot.*;
 public class Boom extends Actor {
     private int frames = 40;
     private int spawnX, spawnY;
-    private Label wasdLabel;  // Make this a field-level variable
+    private Label wasdLabel; 
 
     public Boom(int x, int y) {
         spawnX = x;

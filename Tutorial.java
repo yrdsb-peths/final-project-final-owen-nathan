@@ -1,4 +1,4 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*; 
 
 /**
  * Write a description of class CutsceneWorld here.
@@ -32,7 +32,6 @@ public class Tutorial extends World
         Ship asteroid = new Ship();
         addObject(asteroid, Ship.x, 0);
 
-        // Add WASD label now; we’ll remove it later
         addObject(wasdLabel, 300, 300);
         spawnHuman(400, 300);
     }
