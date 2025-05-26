@@ -4,7 +4,16 @@ public class Battlefield extends World {
     public Label wasdLabel;
     public static int level = 1;
     
-    public Battlefield() {
+    private static Battlefield instance_ = null;
+    
+    public static Battlefield _instance() {
+        if(instance_ == null) {
+            instance_ = new Battlefield();
+        }
+        return instance_;
+    }
+    
+    private Battlefield() {
         super(600, 400, 1);
 
         GreenfootImage worldBG = new GreenfootImage("images/dgggoyk-fdd28b15-79e9-4a3d-a8bd-d7d966e77900.jpg");

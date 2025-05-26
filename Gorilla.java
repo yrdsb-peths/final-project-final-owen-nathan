@@ -45,12 +45,12 @@ public class Gorilla extends Actor
         animateGorilla();
 
         if(getWorld() instanceof Battlefield && getX() <= 0 && getY() <= 80) {
-            Greenfoot.setWorld(new Shop());
+            Greenfoot.setWorld(Shop.instance());
             return;
         }
 
         if(getWorld() instanceof Shop && getX() >= 599 && getY() >= 350) {
-            Greenfoot.setWorld(new Battlefield());
+            Greenfoot.setWorld(Battlefield._instance());          
             return;
         }
         
@@ -58,9 +58,9 @@ public class Gorilla extends Actor
             Tutorial world = (Tutorial) getWorld();
             world.crossed = true;
         }
-
+    
         if (getWorld() instanceof Tutorial && getX() <= 0 && getY() <= 80) {
-            Greenfoot.setWorld(new Shop());
+            Greenfoot.setWorld(Shop.instance());
             return;
         }
     }
