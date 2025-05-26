@@ -11,33 +11,34 @@ dependency1.to=Label
 dependency1.type=UsesDependency
 <<<<<<< Updated upstream
 dependency10.from=Battlefield
-dependency10.to=Cart
+dependency10.to=Label
 dependency10.type=UsesDependency
 dependency11.from=Battlefield
-dependency11.to=Gorilla
+dependency11.to=Cart
 dependency11.type=UsesDependency
-dependency12.from=Boom
-dependency12.to=Label
+dependency12.from=Battlefield
+dependency12.to=Gorilla
 dependency12.type=UsesDependency
 dependency13.from=Boom
-dependency13.to=Gorilla
+dependency13.to=Label
 dependency13.type=UsesDependency
-dependency14.from=Ship
-dependency14.to=Cutscene1
+dependency14.from=Boom
+dependency14.to=Gorilla
 dependency14.type=UsesDependency
 dependency15.from=Ship
-dependency15.to=Tutorial
+dependency15.to=Cutscene1
 dependency15.type=UsesDependency
 dependency16.from=Ship
-dependency16.to=Gorilla
+dependency16.to=Tutorial
 dependency16.type=UsesDependency
 dependency17.from=Ship
-dependency17.to=Boom
+dependency17.to=Gorilla
 dependency17.type=UsesDependency
-dependency18.from=Gorilla
-dependency18.to=SimpleTimer
+dependency18.from=Ship
+dependency18.to=Boom
 dependency18.type=UsesDependency
 dependency19.from=Gorilla
+<<<<<<< Updated upstream
 dependency19.to=Battlefield
 =======
 dependency10.from=Shop
@@ -70,17 +71,23 @@ dependency18.type=UsesDependency
 dependency19.from=Ship
 dependency19.to=Cutscene1
 >>>>>>> Stashed changes
+=======
+dependency19.to=SimpleTimer
+>>>>>>> Stashed changes
 dependency19.type=UsesDependency
 dependency2.from=Tutorial
 dependency2.to=Ship
 dependency2.type=UsesDependency
 <<<<<<< Updated upstream
 dependency20.from=Gorilla
-dependency20.to=Shop
+dependency20.to=Battlefield
 dependency20.type=UsesDependency
 dependency21.from=Gorilla
-dependency21.to=Tutorial
+dependency21.to=Shop
 dependency21.type=UsesDependency
+dependency22.from=Gorilla
+dependency22.to=Tutorial
+dependency22.type=UsesDependency
 dependency3.from=Shop
 dependency3.to=Gorilla
 =======
@@ -109,31 +116,35 @@ dependency3.from=Tutorial
 dependency3.to=Human1
 >>>>>>> Stashed changes
 dependency3.type=UsesDependency
-dependency4.from=Cutscene1
-dependency4.to=Label
+dependency4.from=Shop
+dependency4.to=Sword
 dependency4.type=UsesDependency
 dependency5.from=Cutscene1
-dependency5.to=Ship
+dependency5.to=Label
 dependency5.type=UsesDependency
-dependency6.from=Titlescreen
-dependency6.to=Label
+dependency6.from=Cutscene1
+dependency6.to=Ship
 dependency6.type=UsesDependency
 dependency7.from=Titlescreen
-dependency7.to=Battlefield
+dependency7.to=Label
 dependency7.type=UsesDependency
 dependency8.from=Titlescreen
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 dependency8.to=Cutscene1
+=======
+dependency8.to=Battlefield
+>>>>>>> Stashed changes
 dependency8.type=UsesDependency
-dependency9.from=Battlefield
-dependency9.to=Label
+dependency9.from=Titlescreen
+dependency9.to=Cutscene1
 dependency9.type=UsesDependency
-editor.fx.0.height=737
-editor.fx.0.width=814
-editor.fx.0.x=360
-editor.fx.0.y=26
+editor.fx.0.height=0
+editor.fx.0.width=0
+editor.fx.0.x=0
+editor.fx.0.y=0
 height=814
-package.numDependencies=21
+package.numDependencies=22
 package.numTargets=12
 =======
 dependency8.to=Tutorial
@@ -183,9 +194,13 @@ target10.x=0
 target10.y=0
 target11.height=70
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 target11.name=Cart
 =======
 target11.name=Gorilla
+>>>>>>> Stashed changes
+=======
+target11.name=Battlefield
 >>>>>>> Stashed changes
 target11.showInterface=false
 target11.type=ClassTarget
@@ -193,7 +208,7 @@ target11.width=120
 target11.x=0
 target11.y=0
 target12.height=70
-target12.name=Battlefield
+target12.name=Cart
 target12.showInterface=false
 target12.type=ClassTarget
 target12.width=120
