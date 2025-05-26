@@ -25,7 +25,7 @@ public class Tutorial extends World
         setBackground(worldBG);
         
         scoreLabel = new Label(0, 60);
-        addObject(scoreLabel, 50, 50);
+        addObject(scoreLabel, 550, 60);
         
         addObject(text, 300, 20);
 
