@@ -6,25 +6,37 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Human1 extends Actor
 {
     GreenfootImage[] punchAnim = new GreenfootImage[4];
+    GreenfootImage[] punchAnimFlipped = new GreenfootImage[4]; // mirrored images
     GreenfootImage[] deathAnim = new GreenfootImage[5];
+    GreenfootImage[] deathAnimFlipped = new GreenfootImage[5]; // mirrored images
 
     SimpleTimer animationTimer = new SimpleTimer();
     int frame = 0;
     boolean isDead = false;
     boolean deathFinished = false;
     
-    int speed = 2;  // movement speed
+    int speed = 1;  // movement speed
+    boolean facingRight = true;  // track direction to choose image
 
     public Human1() {
+        // Load punch images and mirrored versions
         for (int i = 0; i < 4; i++) {  
             punchAnim[i] = new GreenfootImage("Human1_Punch" + i + ".png");
             punchAnim[i].scale(80, 80);
+
+            punchAnimFlipped[i] = new GreenfootImage(punchAnim[i]);
+            punchAnimFlipped[i].mirrorHorizontally();
         }
         
+        // Load death images and mirrored versions
         for (int i = 0; i < 5; i++) { 
             deathAnim[i] = new GreenfootImage("Human1_Death" + i + ".png");
             deathAnim[i].scale(130, 80);
+
+            deathAnimFlipped[i] = new GreenfootImage(deathAnim[i]);
+            deathAnimFlipped[i].mirrorHorizontally();
         }
+
         setImage(punchAnim[0]);
         animationTimer.mark();
     }
@@ -46,6 +58,9 @@ public class Human1 extends Actor
         if (gorillas.isEmpty()) return;
         Gorilla gorilla = gorillas.get(0);
         
+        // Decide facing direction based on gorilla position
+        facingRight = (gorilla.getX() >= getX());
+
         int dx = gorilla.getX() - getX();
         int dy = gorilla.getY() - getY();
         
@@ -60,7 +75,12 @@ public class Human1 extends Actor
 
     private void punchLoop() {
         if (animationTimer.millisElapsed() > 200) {
-            setImage(punchAnim[frame]);
+            // Use correct image based on facing direction
+            if (facingRight) {
+                setImage(punchAnim[frame]);
+            } else {
+                setImage(punchAnimFlipped[frame]);
+            }
             frame = (frame + 1) % punchAnim.length;
             animationTimer.mark();
         }
@@ -77,7 +97,11 @@ public class Human1 extends Actor
 
     private void playDeathAnimation() {
         if (!deathFinished && animationTimer.millisElapsed() > 200) {
-            setImage(deathAnim[frame]);
+            if (facingRight) {
+                setImage(deathAnim[frame]);
+            } else {
+                setImage(deathAnimFlipped[frame]);
+            }
             frame++;
             animationTimer.mark();
             if (frame >= deathAnim.length) {
