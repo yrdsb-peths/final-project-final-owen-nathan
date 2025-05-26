@@ -15,8 +15,11 @@ public class Human1 extends Actor
     boolean isDead = false;
     boolean deathFinished = false;
     
-    int speed = 1;  // movement speed
-    boolean facingRight = true;  // track direction to choose image
+    int speed = 1;  // movement speed for human1
+    boolean facingRight = true;  
+    
+    boolean scoreGiven = false;
+
 
     public Human1() {
         // Load punch images and mirrored versions
@@ -48,6 +51,11 @@ public class Human1 extends Actor
             checkGorillaPunch();
         } else {
             playDeathAnimation();
+            if (!scoreGiven) {
+            Tutorial world = (Tutorial) getWorld();
+            world.increaseScore();
+            scoreGiven = true; 
+            }
         }
     }
     
