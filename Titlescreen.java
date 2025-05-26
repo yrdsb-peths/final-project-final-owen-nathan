@@ -16,15 +16,7 @@ public class Titlescreen extends World
         super(600, 400, 1);  
         setBackground("images/titleScreen.jpg");
         prepare();
-    }
-
-    public void Act(){
-        if(Greenfoot.isKeyDown("space")){
-            Battlefield gameWorld = new Battlefield();
-            Greenfoot.setWorld(gameWorld);
-        }
-    }
-    
+    }    
     
     private void prepare() {
         addObject(titleLabel, 300, 200);
