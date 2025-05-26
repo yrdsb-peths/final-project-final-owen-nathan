@@ -26,6 +26,7 @@ public class Tutorial extends World
         addObject(asteroid, Ship.x, 0);
 
         addObject(wasdLabel, 300, 300);
+        spawnHuman(400, 300);
     }
 
     public void act() {
@@ -34,5 +35,10 @@ public class Tutorial extends World
             wasdLabel = null;
         }
     }
+    
+    public void spawnHuman(int x, int y) {
+    Human1 h1 = new Human1();
+    addObject(h1, x, y);
+    }   
 }
 

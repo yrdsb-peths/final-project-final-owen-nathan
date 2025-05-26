@@ -141,4 +141,8 @@ public class Gorilla extends Actor
             setLocation(getX(), getY() + speed);
         }
     }
+    
+    public boolean isPunching() {
+    return punching;
+}
 }
