@@ -64,9 +64,12 @@ dependency26.from=Gorilla
 dependency26.to=Shop
 dependency26.type=UsesDependency
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 dependency27.from=Gorilla
 dependency27.to=Tutorial
 dependency27.type=UsesDependency
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 dependency3.from=Tutorial
@@ -83,20 +86,27 @@ dependency6.to=Label
 dependency6.type=UsesDependency
 dependency7.from=Titlescreen
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 dependency7.to=Battlefield
 dependency7.type=UsesDependency
 dependency8.from=Titlescreen
 dependency8.to=Tutorial
 =======
+=======
+>>>>>>> Stashed changes
 dependency7.to=Tutorial
 dependency7.type=UsesDependency
 dependency8.from=Shop
 dependency8.to=Battlefield
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 dependency8.type=UsesDependency
 dependency9.from=Shop
 dependency9.to=Gorilla
 dependency9.type=UsesDependency
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 editor.fx.0.height=28
 editor.fx.0.width=160
@@ -106,6 +116,8 @@ height=1048
 package.numDependencies=27
 package.numTargets=15
 =======
+=======
+>>>>>>> Stashed changes
 editor.fx.0.height=881
 editor.fx.0.width=695
 editor.fx.0.x=420
@@ -113,6 +125,9 @@ editor.fx.0.y=46
 height=830
 package.numDependencies=26
 package.numTargets=13
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 project.charset=UTF-8
 publish.hasSource=false
@@ -136,7 +151,11 @@ target1.width=120
 target1.x=0
 target1.y=0
 target10.height=70
+<<<<<<< Updated upstream
 target10.name=Asteroid
+=======
+target10.name=Ship
+>>>>>>> Stashed changes
 target10.showInterface=false
 target10.type=ClassTarget
 target10.width=120
@@ -144,7 +163,11 @@ target10.x=0
 target10.y=0
 target11.height=70
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 target11.name=Ship
+=======
+target11.name=Gorilla
+>>>>>>> Stashed changes
 =======
 target11.name=Gorilla
 >>>>>>> Stashed changes
@@ -162,7 +185,11 @@ target12.x=0
 target12.y=0
 target13.height=70
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 target13.name=MyWorld
+=======
+target13.name=Cart
+>>>>>>> Stashed changes
 =======
 target13.name=Cart
 >>>>>>> Stashed changes
@@ -171,6 +198,7 @@ target13.type=ClassTarget
 target13.width=120
 target13.x=0
 target13.y=0
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 target14.height=70
 target14.name=Battlefield
@@ -186,6 +214,8 @@ target15.type=ClassTarget
 target15.width=120
 target15.x=0
 target15.y=0
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 target2.height=70
@@ -246,7 +276,11 @@ target9.x=0
 target9.y=0
 version=3.1.0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 width=1936
+=======
+width=1550
+>>>>>>> Stashed changes
 =======
 width=1550
 >>>>>>> Stashed changes
