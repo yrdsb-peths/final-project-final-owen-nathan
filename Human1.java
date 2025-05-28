@@ -2,9 +2,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 import java.util.Random;
 
-/**
- * Easiest enemy: the regular human that throws punches and dies upon 1 hit.
- */
 public class Human1 extends Actor
 {
     GreenfootImage[] punchAnim = new GreenfootImage[4];
@@ -75,7 +72,6 @@ public class Human1 extends Actor
 
         Gorilla gorilla = gorillas.get(0);
 
-        // Determine direction
         int dx = (gorilla.getX() + offsetX) - getX();
         int dy = (gorilla.getY() + offsetY) - getY();
 

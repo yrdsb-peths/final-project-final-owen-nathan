@@ -27,6 +27,7 @@ public class Battlefield extends World {
         Gorilla gorilla = new Gorilla();
         addObject(gorilla, 50, 50);
         
+
         scoreLabel = new Label(0, 60);
         addObject(scoreLabel, 550, 60);
         

@@ -10,8 +10,10 @@ public class Tutorial extends World
 {
     public boolean landed = false;
     public boolean crossed = false;
-    Label text = new Label("A gorilla finds himself stranded in a new world...", 32);
-    Label wasdLabel = new Label("WASD to move", 50); // ← track label here
+
+    Label text = new Label("a gorilla finds himself stranded in a new world...", 32);
+    Label wasdLabel = new Label("WASD to move", 50); 
+    Label text2 = new Label("just to discover hostile gorilla like beings...", 32);
     Label scoreLabel;
 
     public Tutorial()
@@ -20,6 +22,7 @@ public class Tutorial extends World
         GreenfootImage worldBG = new GreenfootImage("images/dgggoyk-fdd28b15-79e9-4a3d-a8bd-d7d966e77900.jpg");
         worldBG.scale(600, 400);
         setBackground(worldBG);
+
         
         scoreLabel = new Label(0, 60);
         addObject(scoreLabel, 550, 60);
@@ -30,15 +33,20 @@ public class Tutorial extends World
         addObject(asteroid, Ship.x, 0);
 
         addObject(wasdLabel, 300, 300);
-        spawnHuman(400, 300);
     }
 
     public void act() {
-        if (crossed && wasdLabel != null) {
+        if (crossed && wasdLabel != null && text != null) {
             removeObject(wasdLabel);
+            removeObject(text); 
             wasdLabel = null;
+            text = null;
+    
+            addObject(text2, 270, 20);
+            spawnHuman(400, 300);
         }
     }
+
     
     public void increaseScore() {
         ScoreKeeper.score++;
