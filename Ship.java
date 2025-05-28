@@ -6,9 +6,9 @@ public class Ship extends Actor {
     public void act() {
         setLocation(getX(), getY() + 2);
 
-        if (Greenfoot.isKeyDown("a")) {
+        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
             move(-2);
-        } else if (Greenfoot.isKeyDown("d")) {
+        } else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
             move(2);
         }
 
