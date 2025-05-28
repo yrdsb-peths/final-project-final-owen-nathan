@@ -30,12 +30,7 @@ public class Tutorial extends World {
         GreenfootImage worldBG = new GreenfootImage("images/dgggoyk-fdd28b15-79e9-4a3d-a8bd-d7d966e77900.jpg");
         worldBG.scale(600, 400);
         setBackground(worldBG);
-<<<<<<< Updated upstream
-
-=======
-        
         ScoreKeeper.score = 0;
->>>>>>> Stashed changes
         scoreLabel = new Label(0, 60);
         addObject(scoreLabel, 550, 60);
 
@@ -43,11 +38,13 @@ public class Tutorial extends World {
 
         Ship asteroid = new Ship();
         addObject(asteroid, Ship.x, 0);
-<<<<<<< Updated upstream
-=======
+<
 
         addObject(wasdLabel, 300, 300);
         spawnHuman(400, 200);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 
