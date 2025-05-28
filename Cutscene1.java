@@ -26,4 +26,3 @@ public class Cutscene1 extends World
         Ship asteroid = new Ship();
         addObject(asteroid, Greenfoot.getRandomNumber(600), 0);
     }
-}
