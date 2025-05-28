@@ -135,18 +135,18 @@ public class Gorilla extends Actor
     }
 
     public void handleMovement() {
-        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
+        if (Greenfoot.isKeyDown("a")) {
             setLocation(getX() - speed, getY());
             facing = "left";
         }
-        if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
+        if (Greenfoot.isKeyDown("d")) {
             setLocation(getX() + speed, getY());
             facing = "right";
         }
-        if (Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("up")) {
+        if (Greenfoot.isKeyDown("w")) {
             setLocation(getX(), getY() - speed);
         }
-        if (Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("down")) {
+        if (Greenfoot.isKeyDown("s")) {
             setLocation(getX(), getY() + speed);
         }
     }
