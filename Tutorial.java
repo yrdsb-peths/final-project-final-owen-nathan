@@ -10,10 +10,12 @@ public class Tutorial extends World
 {
     public boolean landed = false;
     public boolean crossed = false;
+
     Label text = new Label("a gorilla finds himself stranded in a new world...", 32);
     Label wasdLabel = new Label("WASD to move", 50); 
     Label text2 = new Label("just to discover hostile gorilla like beings...", 32);
-    
+    Label scoreLabel;
+
     public Tutorial()
     {
         super(600, 400, 1);
@@ -21,6 +23,10 @@ public class Tutorial extends World
         worldBG.scale(600, 400);
         setBackground(worldBG);
 
+        
+        scoreLabel = new Label(0, 60);
+        addObject(scoreLabel, 550, 60);
+        
         addObject(text, 300, 20);
 
         Ship asteroid = new Ship();
@@ -41,6 +47,11 @@ public class Tutorial extends World
         }
     }
 
+    
+    public void increaseScore() {
+        ScoreKeeper.score++;
+        scoreLabel.setValue(ScoreKeeper.score);
+    }
     
     public void spawnHuman(int x, int y) {
     Human1 h1 = new Human1();
