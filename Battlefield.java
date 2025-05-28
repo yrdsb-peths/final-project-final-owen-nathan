@@ -16,7 +16,9 @@ public class Battlefield extends World {
     
     private Battlefield() {
         super(600, 400, 1);
-
+        
+        ScoreKeeper.score = 1;
+        
         GreenfootImage worldBG = new GreenfootImage("images/dgggoyk-fdd28b15-79e9-4a3d-a8bd-d7d966e77900.jpg");
         worldBG.scale(600, 400);
         setBackground(worldBG);
@@ -30,7 +32,6 @@ public class Battlefield extends World {
 
         scoreLabel = new Label(0, 60);
         addObject(scoreLabel, 550, 60);
-        
     }
     
     public void act(){
