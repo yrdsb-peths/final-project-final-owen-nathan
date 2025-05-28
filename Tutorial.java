@@ -10,9 +10,10 @@ public class Tutorial extends World
 {
     public boolean landed = false;
     public boolean crossed = false;
-    Label text = new Label("a gorilla finds himself stranded in a new world...", 20);
+    Label text = new Label("a gorilla finds himself stranded in a new world...", 32);
     Label wasdLabel = new Label("WASD to move", 50); 
-
+    Label text2 = new Label("just to discover hostile gorilla like beings...", 32);
+    
     public Tutorial()
     {
         super(600, 400, 1);
@@ -20,21 +21,26 @@ public class Tutorial extends World
         worldBG.scale(600, 400);
         setBackground(worldBG);
 
-        addObject(text, 180, 20);
+        addObject(text, 300, 20);
 
         Ship asteroid = new Ship();
         addObject(asteroid, Ship.x, 0);
 
         addObject(wasdLabel, 300, 300);
-        spawnHuman(400, 300);
     }
 
     public void act() {
-        if (crossed && wasdLabel != null) {
+        if (crossed && wasdLabel != null && text != null) {
             removeObject(wasdLabel);
+            removeObject(text); 
             wasdLabel = null;
+            text = null;
+    
+            addObject(text2, 270, 20);
+            spawnHuman(400, 300);
         }
     }
+
     
     public void spawnHuman(int x, int y) {
     Human1 h1 = new Human1();

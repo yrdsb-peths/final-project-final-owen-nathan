@@ -13,8 +13,12 @@ public class Gorilla extends Actor
     boolean spacePressedLastFrame = false;
     int imageIndex = 0;
     int speed = 4;
+    private HealthBar healthBar;
+    private int maxHealth = 100;
 
     public Gorilla() {
+        healthBar = new HealthBar(maxHealth);
+
         for (int i = 0; i < 3; i++) {
             walkRight[i] = new GreenfootImage("Gorilla_Walk" + i + ".png");
             walkRight[i].scale(80, 80);
@@ -36,6 +40,10 @@ public class Gorilla extends Actor
     }
 
     public void act() {
+        if (getWorld() != null && getWorld().getObjects(HealthBar.class).isEmpty()) {
+            getWorld().addObject(healthBar, getX(), getY() - 50);
+        }
+
         checkPunchKey();
         if (!punching) {
             handleMovement();
@@ -80,6 +88,7 @@ public class Gorilla extends Actor
 
     public void animateGorilla() {
         int delay = punching ? 200 : 100;
+        healthBar.setLocation(getX(), getY() - 50);
         if (animationTimer.millisElapsed() < delay) {
             return;
         }

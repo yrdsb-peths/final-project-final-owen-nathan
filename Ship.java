@@ -14,7 +14,9 @@ public class Ship extends Actor {
 
         if(getWorld() instanceof Cutscene1 && getY() >= 399) {
             x = getX(); 
-            getWorld().removeObject(this);
+            GreenfootImage invisible = new GreenfootImage(60, 60);
+            invisible.clear();
+            setImage(invisible);
             Greenfoot.setWorld(new Tutorial());
             return;
         }

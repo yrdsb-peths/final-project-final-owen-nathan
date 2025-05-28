@@ -26,7 +26,6 @@ public class Battlefield extends World {
         Gorilla gorilla = new Gorilla();
         addObject(gorilla, 50, 50);
         
-        
     }
     
     public void spawnHuman(int x, int y) {
