@@ -6,15 +6,17 @@ public class Ship extends Actor {
     public void act() {
         setLocation(getX(), getY() + 2);
 
-        if (Greenfoot.isKeyDown("a")) {
+        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
             move(-2);
-        } else if (Greenfoot.isKeyDown("d")) {
+        } else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
             move(2);
         }
 
         if(getWorld() instanceof Cutscene1 && getY() >= 399) {
             x = getX(); 
-            getWorld().removeObject(this);
+            GreenfootImage invisible = new GreenfootImage(60, 60);
+            invisible.clear();
+            setImage(invisible);
             Greenfoot.setWorld(new Tutorial());
             return;
         }
