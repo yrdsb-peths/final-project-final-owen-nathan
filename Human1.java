@@ -19,6 +19,9 @@ public class Human1 extends Actor
     int speed = 1;
     int offsetX, offsetY;
 
+    private boolean hasDealtDamageThisPunch = false;
+    
+    
     public Human1() {
         for (int i = 0; i < 4; i++) {
             punchAnim[i] = new GreenfootImage("Human1_Punch" + i + ".png");
@@ -86,18 +89,6 @@ public class Human1 extends Actor
         }
     }
 
-    private void punchLoop() {
-        if (animationTimer.millisElapsed() > 200) {
-            if (facingRight) {
-                setImage(punchAnim[frame]);
-            } else {
-                setImage(punchAnimFlipped[frame]);
-            }
-            frame = (frame + 1) % punchAnim.length;
-            animationTimer.mark();
-        }
-    }
-
     private void checkGorillaPunch() {
         Actor gorilla = getOneIntersectingObject(Gorilla.class);
         if (gorilla != null && ((Gorilla)gorilla).isPunching()) {
@@ -125,4 +116,35 @@ public class Human1 extends Actor
             }
         }
     }
+    
+    private void punchLoop() {
+        if (animationTimer.millisElapsed() > 200) {
+            if (facingRight) {
+                setImage(punchAnim[frame]);
+            } else {
+                setImage(punchAnimFlipped[frame]);
+            }
+    
+            if (frame == 3 && !hasDealtDamageThisPunch) {
+                dealDamageToGorilla();
+                hasDealtDamageThisPunch = true;
+            }
+    
+            frame = (frame + 1) % punchAnim.length;
+    
+            // Reset damage ability at the start of each punch
+            if (frame == 0) {
+                hasDealtDamageThisPunch = false;
+            }
+    
+            animationTimer.mark();
+        }
+    }
+
+    private void dealDamageToGorilla() {
+        Gorilla gorilla = (Gorilla)getOneIntersectingObject(Gorilla.class);
+        if (gorilla != null) {
+            gorilla.updateHealth(-10);  // Apply 10 damage to Gorilla
+        }
+    }   
 }

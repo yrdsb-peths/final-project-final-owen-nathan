@@ -14,9 +14,11 @@ public class Gorilla extends Actor
     int imageIndex = 0;
     int speed = 4;
     private HealthBar healthBar;
+    private int currentHealth;
     private int maxHealth = 100;
 
     public Gorilla() {
+        currentHealth = maxHealth;
         healthBar = new HealthBar(maxHealth);
 
         for (int i = 0; i < 3; i++) {
@@ -40,9 +42,10 @@ public class Gorilla extends Actor
     }
 
     public void act() {
-        if (getWorld() != null && getWorld().getObjects(HealthBar.class).isEmpty()) {
+        if (getWorld() != null && !getWorld().getObjects(HealthBar.class).contains(healthBar)) {
             getWorld().addObject(healthBar, getX(), getY() - 50);
         }
+        healthBar.setLocation(getX(), getY() - 50);
 
         checkPunchKey();
         if (!punching) {
@@ -153,5 +156,17 @@ public class Gorilla extends Actor
     
     public boolean isPunching() {
     return punching;
-}
+    }
+    
+    public void updateHealth(int change) {
+        currentHealth += change;
+        if (currentHealth < 0) currentHealth = 0;
+        if (currentHealth > maxHealth) currentHealth = maxHealth;
+
+        healthBar.updateHealth(change);  
+        if (currentHealth <= 0) {
+            // Gorilla died! 
+        }
+    }
+
 }
