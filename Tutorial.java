@@ -31,8 +31,9 @@ public class Tutorial extends World {
         worldBG.scale(600, 400);
         setBackground(worldBG);
         ScoreKeeper.score = 0;
-        scoreLabel = new Label(0, 60);
+        scoreLabel = new Label(60, 0);
         addObject(scoreLabel, 550, 60);
+        addObject(text, 300, 60);
 
         switchLabel(text);
 
