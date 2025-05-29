@@ -40,7 +40,6 @@ public class Tutorial extends World {
         Ship asteroid = new Ship();
         addObject(asteroid, Ship.x, 0);
         addObject(wasdLabel, 300, 300);
-        spawnHuman(400, 200);
     }
 
     public void act() {
