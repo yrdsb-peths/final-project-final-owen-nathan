@@ -30,14 +30,16 @@ public class Tutorial extends World {
         GreenfootImage worldBG = new GreenfootImage("images/dgggoyk-fdd28b15-79e9-4a3d-a8bd-d7d966e77900.jpg");
         worldBG.scale(600, 400);
         setBackground(worldBG);
-
-        scoreLabel = new Label(0, 60);
+        ScoreKeeper.score = 0;
+        scoreLabel = new Label(60, 0);
         addObject(scoreLabel, 550, 60);
+        addObject(text, 300, 60);
 
         switchLabel(text);
 
         Ship asteroid = new Ship();
         addObject(asteroid, Ship.x, 0);
+        addObject(wasdLabel, 300, 300);
     }
 
     public void act() {
