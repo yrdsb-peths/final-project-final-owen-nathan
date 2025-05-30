@@ -10,6 +10,7 @@ dependency1.from=Tutorial
 dependency1.to=Label
 dependency1.type=UsesDependency
 dependency10.from=Shop
+<<<<<<< Updated upstream
 dependency10.to=Gorilla
 dependency10.type=UsesDependency
 dependency11.from=Shop
@@ -38,11 +39,41 @@ dependency18.to=Tutorial
 dependency18.type=UsesDependency
 dependency19.from=Human1
 dependency19.to=Battlefield
+=======
+dependency10.type=UsesDependency
+dependency11.from=Shop
+dependency11.to=Gorilla
+dependency11.type=UsesDependency
+dependency12.from=Shop
+dependency12.to=Sword
+dependency12.type=UsesDependency
+dependency13.from=Battlefield
+dependency13.to=Label
+dependency13.type=UsesDependency
+dependency14.from=Battlefield
+dependency14.to=Cart
+dependency14.type=UsesDependency
+dependency15.from=Battlefield
+dependency15.to=Gorilla
+dependency15.type=UsesDependency
+dependency16.from=Battlefield
+dependency16.to=Human1
+dependency16.type=UsesDependency
+dependency17.from=Battlefield
+dependency17.to=ScoreKeeper
+dependency17.type=UsesDependency
+dependency18.from=Human1
+dependency18.to=SimpleTimer
+dependency18.type=UsesDependency
+dependency19.from=Human1
+dependency19.to=Tutorial
+>>>>>>> Stashed changes
 dependency19.type=UsesDependency
 dependency2.from=Tutorial
 dependency2.to=Ship
 dependency2.type=UsesDependency
 dependency20.from=Human1
+<<<<<<< Updated upstream
 dependency20.to=Gorilla
 dependency20.type=UsesDependency
 dependency21.from=Boom
@@ -71,12 +102,46 @@ dependency28.to=HealthBar
 dependency28.type=UsesDependency
 dependency29.from=Gorilla
 dependency29.to=Battlefield
+=======
+dependency20.to=Battlefield
+dependency20.type=UsesDependency
+dependency21.from=Human1
+dependency21.to=Gorilla
+dependency21.type=UsesDependency
+dependency22.from=Boom
+dependency22.to=Label
+dependency22.type=UsesDependency
+dependency23.from=Boom
+dependency23.to=Gorilla
+dependency23.type=UsesDependency
+dependency24.from=Ship
+dependency24.to=Cutscene1
+dependency24.type=UsesDependency
+dependency25.from=Ship
+dependency25.to=Tutorial
+dependency25.type=UsesDependency
+dependency26.from=Ship
+dependency26.to=Gorilla
+dependency26.type=UsesDependency
+dependency27.from=Ship
+dependency27.to=Boom
+dependency27.type=UsesDependency
+dependency28.from=Gorilla
+dependency28.to=SimpleTimer
+dependency28.type=UsesDependency
+dependency29.from=Gorilla
+dependency29.to=HealthBar
+>>>>>>> Stashed changes
 dependency29.type=UsesDependency
 dependency3.from=Tutorial
 dependency3.to=Human1
 dependency3.type=UsesDependency
 dependency30.from=Gorilla
+<<<<<<< Updated upstream
 dependency30.to=Shop
+=======
+dependency30.to=Battlefield
+>>>>>>> Stashed changes
 dependency30.type=UsesDependency
 dependency31.from=Gorilla
 dependency31.to=Tutorial
