@@ -12,6 +12,7 @@ dependency1.type=UsesDependency
 dependency10.from=Shop
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 dependency10.to=Gorilla
 dependency10.type=UsesDependency
 dependency11.from=Shop
@@ -43,6 +44,8 @@ dependency19.to=Battlefield
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 dependency10.to=Battlefield
 dependency10.type=UsesDependency
 dependency11.from=Shop
@@ -72,6 +75,9 @@ dependency18.type=UsesDependency
 dependency19.from=Human1
 dependency19.to=Tutorial
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -80,6 +86,7 @@ dependency2.from=Tutorial
 dependency2.to=Ship
 dependency2.type=UsesDependency
 dependency20.from=Human1
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 dependency20.to=Gorilla
@@ -113,6 +120,8 @@ dependency29.to=Battlefield
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 dependency20.to=Battlefield
 dependency20.type=UsesDependency
 dependency21.from=Human1
@@ -142,6 +151,9 @@ dependency28.type=UsesDependency
 dependency29.from=Gorilla
 dependency29.to=HealthBar
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -152,8 +164,11 @@ dependency3.type=UsesDependency
 dependency30.from=Gorilla
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 dependency30.to=Shop
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 dependency30.to=Battlefield
