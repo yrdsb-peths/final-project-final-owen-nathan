@@ -66,7 +66,7 @@ public class Tutorial extends World {
             enterPressed = false;
         }
 
-        if (text3Shown && Greenfoot.isKeyDown("d") && !text4Shown) {
+        if (text3Shown && Greenfoot.isKeyDown("a") && !text4Shown) {
             switchLabel(text4);
             text4Shown = true;
         }
