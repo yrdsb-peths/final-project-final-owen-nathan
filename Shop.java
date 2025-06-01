@@ -11,6 +11,7 @@ public class Shop extends World
     public Battlefield prevWorld;
     
     private static Shop _instance = null;
+    Label coinLabel;
     
     public static Shop instance() {
         if(_instance == null) {
@@ -33,5 +34,11 @@ public class Shop extends World
         
         Sword sword = new Sword();
         addObject(sword, 575, 370);
+        
+        coinLabel = new Label("" + Currency.getCoins(), 40);
+        addObject(coinLabel, 40, 360);
+        
+        Coin coin = new Coin();
+        addObject(coin, 20, 362);
     }
 }

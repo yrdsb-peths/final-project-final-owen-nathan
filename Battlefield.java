@@ -3,12 +3,16 @@ import greenfoot.*;
 public class Battlefield extends World {
     Label scoreLabel;
     Label waveLabel;
+    Label coinLabel;
 
     int waveNumber = 1;
-    public boolean ready = false;  // false = waiting for player to start wave
+    public boolean ready = false; 
     boolean waveAnnounced = false;
-    
+    boolean coinsGiven = false;
+
     private static Battlefield instance_ = null;
+    
+    Label start = new Label("Press enter to face enemies", 30);
     
     public static Battlefield _instance() {
         if(instance_ == null) {
@@ -35,22 +39,32 @@ public class Battlefield extends World {
         scoreLabel = new Label(0, 60);
         addObject(scoreLabel, 550, 60);
         
-        // Announce wave 1 right away (no spawning yet)
+        coinLabel = new Label("" + Currency.getCoins(), 40);
+        addObject(coinLabel, 40, 360);
+        
+        Coin coin = new Coin();
+        addObject(coin, 20, 362);
+        
         announceWave();
         waveAnnounced = true;
     }
     
     public void act() {
         scoreLabel.setValue(ScoreKeeper.score);
-        
+        coinLabel.setValue("" + Currency.getCoins()); // also fix: use setValue(String)
+    
         if (waveCleared() && ready) {
+            if (!coinsGiven) {
+                giveWaveReward(waveNumber);
+                coinsGiven = true;
+            }
+    
             ready = false;
             waveNumber++;
             announceWave();
             waveAnnounced = true;
         }
-        
-        // Wait for player to press enter to start the wave
+    
         if (!ready && waveAnnounced && Greenfoot.isKeyDown("enter")) {
             if (waveLabel != null) {
                 removeObject(waveLabel);
@@ -58,8 +72,10 @@ public class Battlefield extends World {
             startWave(waveNumber);
             ready = true;
             waveAnnounced = false;
+            coinsGiven = false; // Reset so next wave reward can trigger
         }
     }
+
     
     public void spawnHuman(int x, int y) {
         Human1 h1 = new Human1();
@@ -102,16 +118,23 @@ public class Battlefield extends World {
     }
     
     public boolean waveCleared() {
-        // score thresholds for each wave
         if (waveNumber == 1) return ScoreKeeper.score >= 6;
         if (waveNumber == 2) return ScoreKeeper.score >= 12;
         if (waveNumber == 3) return ScoreKeeper.score >= 18;
         return false;
     }
+
+    public void giveWaveReward(int wave) {
+        if (wave == 1) Currency.addCoins(5);
+        if (wave == 2) Currency.addCoins(10);
+        if (wave == 3) Currency.addCoins(20);
+    }
+
     
     public void announceWave() {
         waveLabel = new Label("Wave " + waveNumber, 60);
         addObject(waveLabel, getWidth() / 2, getHeight() / 2);
+        addObject(start, 300, 250);
     }
 
     public void increaseScore() {
