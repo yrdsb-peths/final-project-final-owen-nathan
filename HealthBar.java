@@ -17,7 +17,11 @@ public class HealthBar extends Actor {
         
     }
 
-
+    public void setHealth(int value) {
+        currentHealth = value;
+        updateHealth(0); // Triggers redraw without changing value
+    }
+    
     public void updateHealth(int change) {
         currentHealth += change;
         if (currentHealth < 0) currentHealth = 0;

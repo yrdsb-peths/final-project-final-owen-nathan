@@ -27,7 +27,6 @@ public class Ship extends Actor {
 
             int asteroidX = getX(); 
 
-            Gorilla gorilla = new Gorilla();
             Boom boom = new Boom(asteroidX, 200);
             world.addObject(boom, asteroidX, 200);
 

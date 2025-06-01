@@ -16,7 +16,7 @@ public class Boom extends Actor {
     public void act() {
         if (frames <= 0 && getWorld() != null) {
             World world = getWorld();
-            Gorilla gorilla = new Gorilla();
+            Gorilla gorilla = Gorilla.getInstance();
             world.addObject(gorilla, spawnX, spawnY);
     
             world.removeObject(this); 

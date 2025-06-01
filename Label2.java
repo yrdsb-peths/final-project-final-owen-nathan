@@ -2,21 +2,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 
 /**
- * A Label class that allows you to display a textual value on screen.
+ * A Label2 class that allows you to display a textual value on screen.
  * 
- * The Label is an actor, so you will need to create it, and then add it to the world
- * in Greenfoot.  If you keep a reference to the Label then you can change the text it
+ * The Label2 is an actor, so you will need to create it, and then add it to the world
+ * in Greenfoot.  If you keep a reference to the Label2 then you can change the text it
  * displays.  
  *
  * @author Amjad Altadmri 
  * @version 1.1
  */
-public class Label extends Actor
+public class Label2 extends Actor
 {
     private String value;
     private int fontSize;
-    private Color lineColor = Color.WHITE;
-    private Color fillColor = Color.WHITE;
+    private Color lineColor = Color.BLACK;
+    private Color fillColor = Color.BLACK;
     
     private static final Color transparent = new Color(0,0,0,0);
 
@@ -24,7 +24,7 @@ public class Label extends Actor
     /**
      * Create a new label, initialise it with the int value to be shown and the font size 
      */
-    public Label(int value, int fontSize)
+    public Label2(int value, int fontSize)
     {
         this(Integer.toString(value), fontSize);
     }
@@ -32,7 +32,7 @@ public class Label extends Actor
     /**
      * Create a new label, initialise it with the needed text and the font size 
      */
-    public Label(String value, int fontSize)
+    public Label2(String value, int fontSize)
     {
         this.value = value;
         this.fontSize = fontSize;

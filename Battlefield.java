@@ -4,13 +4,13 @@ public class Battlefield extends World {
     Label scoreLabel;
     Label waveLabel;
     Label coinLabel;
-
+    
     int waveNumber = 1;
     public boolean ready = false; 
     boolean waveAnnounced = false;
     boolean coinsGiven = false;
 
-    private static Battlefield instance_ = null;
+    private static Battlefield instance_;
     
     Label start = new Label("Press enter to face enemies", 30);
     
@@ -23,7 +23,6 @@ public class Battlefield extends World {
     
     private Battlefield() {
         super(600, 400, 1);
-        
         ScoreKeeper.score = 1;
         
         GreenfootImage worldBG = new GreenfootImage("images/dgggoyk-fdd28b15-79e9-4a3d-a8bd-d7d966e77900.jpg");
@@ -32,21 +31,33 @@ public class Battlefield extends World {
         
         Cart cart = new Cart();
         addObject(cart, 25, 40);
-        
-        Gorilla gorilla = new Gorilla();
-        addObject(gorilla, 50, 50);
+
+        addObject(Gorilla.getInstance(), 50, 50);
         
         scoreLabel = new Label(0, 60);
         addObject(scoreLabel, 550, 60);
         
         coinLabel = new Label("" + Currency.getCoins(), 40);
-        addObject(coinLabel, 40, 360);
+        addObject(coinLabel, 50, 360);
         
         Coin coin = new Coin();
         addObject(coin, 20, 362);
         
         announceWave();
         waveAnnounced = true;
+        prepare();
+    }
+    
+    public void prepare() {
+        Gorilla gorilla = Gorilla.getInstance();
+
+        // Remove Gorilla from other world if needed
+        if (gorilla.getWorld() != null) {
+            gorilla.getWorld().removeObject(gorilla);
+        }
+
+        addObject(gorilla, 50, 50);  // or wherever you want
+        gorilla.updateHealthBarPosition();
     }
     
     public void act() {
@@ -68,12 +79,19 @@ public class Battlefield extends World {
         if (!ready && waveAnnounced && Greenfoot.isKeyDown("enter")) {
             if (waveLabel != null) {
                 removeObject(waveLabel);
+                removeObject(start);
             }
             startWave(waveNumber);
             ready = true;
             waveAnnounced = false;
             coinsGiven = false; // Reset so next wave reward can trigger
         }
+    }
+
+    private Gorilla gorilla;
+
+    public Gorilla getGorilla() {
+        return gorilla;
     }
 
     
