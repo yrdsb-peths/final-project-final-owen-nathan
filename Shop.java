@@ -3,7 +3,7 @@ import greenfoot.*;
 public class Shop extends World {
     private static Shop _instance = null;
     private World prevWorld;
-
+    Label2 fireLabel;
     Label2 coinLabel;
     Label2 HP = new Label2("HP\u219210", 25);
     Label2 PET = new Label2("PET\u219250", 25);
@@ -45,6 +45,7 @@ public class Shop extends World {
 
     public void act() {
         coinLabel.setValue("" + Currency.getCoins());
+        fireLabel.setValue("" + FireCounter.getTraps());
     }
 
     private void setup() {
@@ -53,7 +54,13 @@ public class Shop extends World {
 
         coinLabel = new Label2("" + Currency.getCoins(), 40);
         addObject(coinLabel, 50, 360);
-
+        
+        FireCount fire2 = new FireCount();
+        addObject(fire2, 90, 360);
+        
+        fireLabel = new Label2("" + FireCounter.getTraps(), 40);
+        addObject(fireLabel, 120, 360);
+        
         addObject(new Coin(), 20, 362);
         addObject(new Coin(), 132, 72);
         addObject(new Coin(), 332, 72);

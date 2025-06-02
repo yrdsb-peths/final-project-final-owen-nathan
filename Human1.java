@@ -144,7 +144,7 @@ public class Human1 extends Actor
     private void dealDamageToGorilla() {
         Gorilla gorilla = (Gorilla)getOneIntersectingObject(Gorilla.class);
         if (gorilla != null) {
-            gorilla.updateHealth(-2);  // Apply 10 damage to Gorilla
+            gorilla.updateHealth(-2);  // Apply damage to Gorilla
         }
     }   
 }

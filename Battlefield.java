@@ -4,6 +4,7 @@ public class Battlefield extends World {
     Label scoreLabel;
     Label waveLabel;
     Label coinLabel;
+    Label fireLabel;
     
     int waveNumber = 1;
     public boolean ready = false; 
@@ -43,6 +44,12 @@ public class Battlefield extends World {
         Coin coin = new Coin();
         addObject(coin, 20, 362);
         
+        FireCount fire = new FireCount();
+        addObject(fire, 90, 360);
+        
+        fireLabel = new Label("" + FireCounter.getTraps(), 40);
+        addObject(fireLabel, 120, 360);
+        
         announceWave();
         waveAnnounced = true;
         prepare();
@@ -63,7 +70,7 @@ public class Battlefield extends World {
     public void act() {
         scoreLabel.setValue(ScoreKeeper.score);
         coinLabel.setValue("" + Currency.getCoins()); // also fix: use setValue(String)
-    
+        fireLabel.setValue("" + FireCounter.getTraps());
         if (waveCleared() && ready) {
             if (!coinsGiven) {
                 giveWaveReward(waveNumber);
@@ -110,12 +117,15 @@ public class Battlefield extends World {
     }
     
     public void wave1() {
-        spawnHuman(550, 10);
-        spawnHuman(50, 60);
-        spawnHuman(550, 110);
-        spawnHuman(50, 150);
-        spawnHuman(550, 200);
+        Battlefield world = this;
+    
+        world.addObject(new DelayedSpawner(0, 550, Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(30, Greenfoot.getRandomNumber(600), 60), 0, 0);
+        world.addObject(new DelayedSpawner(60, 550, Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(90, Greenfoot.getRandomNumber(600), 150), 0, 0);
+        world.addObject(new DelayedSpawner(120, 550, Greenfoot.getRandomNumber(400)), 0, 0);
     }
+
     
     public void wave2() {
         spawnHuman(100, 50);
