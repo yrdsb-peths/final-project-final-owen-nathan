@@ -3,6 +3,7 @@ class.Boom.image=boom.png
 class.Cart.image=cart.png
 class.Coin.image=eebff9473989ed0.png
 class.Fire.image=Buff_Fire-removebg-preview.png
+class.FireCount.image=Buff_Fire_Rate-removebg-preview.png
 class.Health.image=Buff_Health-removebg-preview.png
 class.Pet.image=Buff_Pet-removebg-preview.png
 class.Sale.image=Buff_Sale-removebg-preview.png
@@ -11,55 +12,21 @@ class.Shop.image=sand.jpg
 class.Sword.image=sword.png
 class.Titlescreen.image=titleScreenGorilla.png
 class.Tutorial.image=dgggoyk-fdd28b15-79e9-4a3d-a8bd-d7d966e77900.jpg
-<<<<<<< Updated upstream
 class.tester.image=sand.jpg
 dependency1.from=Tutorial
 dependency1.to=Label
 dependency1.type=UsesDependency
-dependency10.from=tester
+dependency10.from=Shop
 dependency10.to=Label2
 dependency10.type=UsesDependency
-dependency11.from=tester
-dependency11.to=Sword
-dependency11.type=UsesDependency
-dependency12.from=tester
-dependency12.to=Coin
-dependency12.type=UsesDependency
-dependency13.from=tester
-dependency13.to=Sale
-dependency13.type=UsesDependency
-dependency14.from=tester
-dependency14.to=Health
-dependency14.type=UsesDependency
-dependency15.from=tester
-dependency15.to=Fire
-dependency15.type=UsesDependency
-dependency16.from=tester
-dependency16.to=Pet
-dependency16.type=UsesDependency
-dependency17.from=tester
-dependency17.to=Currency
-dependency17.type=UsesDependency
-dependency18.from=Shop
-dependency18.to=Label2
-dependency18.type=UsesDependency
-dependency19.from=Shop
-dependency19.to=Gorilla
-=======
-dependency1.from=Cutscene1
-dependency1.to=Label
-dependency1.type=UsesDependency
-dependency10.from=Tutorial
-dependency10.to=ScoreKeeper
-dependency10.type=UsesDependency
 dependency11.from=Shop
-dependency11.to=Label2
+dependency11.to=Gorilla
 dependency11.type=UsesDependency
 dependency12.from=Shop
-dependency12.to=Gorilla
+dependency12.to=Sword
 dependency12.type=UsesDependency
 dependency13.from=Shop
-dependency13.to=Sword
+dependency13.to=Coin
 dependency13.type=UsesDependency
 dependency14.from=Shop
 dependency14.to=FireCount
@@ -78,26 +45,21 @@ dependency18.to=Fire
 dependency18.type=UsesDependency
 dependency19.from=Shop
 dependency19.to=Pet
->>>>>>> Stashed changes
 dependency19.type=UsesDependency
-dependency2.from=Cutscene1
-dependency2.to=Ship
-dependency2.type=UsesDependency
-dependency20.from=Shop
-<<<<<<< Updated upstream
-dependency20.to=Sword
+dependency20.from=Battlefield
+dependency20.to=Cart
 dependency20.type=UsesDependency
-dependency21.from=Shop
+dependency21.from=Battlefield
 dependency21.to=Coin
 dependency21.type=UsesDependency
 dependency22.from=Shop
 dependency22.to=Sale
 dependency22.type=UsesDependency
-dependency23.from=Shop
-dependency23.to=Health
+dependency23.from=Battlefield
+dependency23.to=Human1
 dependency23.type=UsesDependency
-dependency24.from=Shop
-dependency24.to=Fire
+dependency24.from=Battlefield
+dependency24.to=DelayedSpawner
 dependency24.type=UsesDependency
 dependency25.from=Shop
 dependency25.to=Pet
@@ -113,42 +75,11 @@ dependency28.to=Cart
 dependency28.type=UsesDependency
 dependency29.from=Battlefield
 dependency29.to=Coin
-=======
-dependency20.to=Currency
-dependency20.type=UsesDependency
-dependency21.from=Shop
-dependency21.to=FireCounter
-dependency21.type=UsesDependency
-dependency22.from=Battlefield
-dependency22.to=Label
-dependency22.type=UsesDependency
-dependency23.from=Battlefield
-dependency23.to=Cart
-dependency23.type=UsesDependency
-dependency24.from=Battlefield
-dependency24.to=Coin
-dependency24.type=UsesDependency
-dependency25.from=Battlefield
-dependency25.to=FireCount
-dependency25.type=UsesDependency
-dependency26.from=Battlefield
-dependency26.to=Gorilla
-dependency26.type=UsesDependency
-dependency27.from=Battlefield
-dependency27.to=Human1
-dependency27.type=UsesDependency
-dependency28.from=Battlefield
-dependency28.to=DelayedSpawner
-dependency28.type=UsesDependency
-dependency29.from=Battlefield
-dependency29.to=ScoreKeeper
->>>>>>> Stashed changes
 dependency29.type=UsesDependency
 dependency3.from=Titlescreen
 dependency3.to=Label
 dependency3.type=UsesDependency
 dependency30.from=Battlefield
-<<<<<<< Updated upstream
 dependency30.to=Gorilla
 dependency30.type=UsesDependency
 dependency31.from=Battlefield
@@ -176,41 +107,11 @@ dependency38.from=Boom
 dependency38.to=Label
 dependency38.type=UsesDependency
 dependency39.from=Boom
-=======
-dependency30.to=Currency
-dependency30.type=UsesDependency
-dependency31.from=Battlefield
-dependency31.to=FireCounter
-dependency31.type=UsesDependency
-dependency32.from=Human1
-dependency32.to=SimpleTimer
-dependency32.type=UsesDependency
-dependency33.from=Human1
-dependency33.to=Tutorial
-dependency33.type=UsesDependency
-dependency34.from=Human1
-dependency34.to=Battlefield
-dependency34.type=UsesDependency
-dependency35.from=Human1
-dependency35.to=Gorilla
-dependency35.type=UsesDependency
-dependency36.from=Human2
-dependency36.to=SimpleTimer
-dependency36.type=UsesDependency
-dependency37.from=Human2
-dependency37.to=Tutorial
-dependency37.type=UsesDependency
-dependency38.from=Human2
-dependency38.to=Battlefield
-dependency38.type=UsesDependency
-dependency39.from=Human2
->>>>>>> Stashed changes
 dependency39.to=Gorilla
 dependency39.type=UsesDependency
 dependency4.from=Titlescreen
 dependency4.to=Cutscene1
 dependency4.type=UsesDependency
-<<<<<<< Updated upstream
 dependency40.from=Ship
 dependency40.to=Cutscene1
 dependency40.type=UsesDependency
@@ -238,38 +139,9 @@ dependency47.type=UsesDependency
 dependency48.from=Gorilla
 dependency48.to=Currency
 dependency48.type=UsesDependency
-=======
-dependency40.from=Boom
-dependency40.to=Label
-dependency40.type=UsesDependency
-dependency41.from=Boom
-dependency41.to=Gorilla
-dependency41.type=UsesDependency
-dependency42.from=DelayedSpawner
-dependency42.to=Battlefield
-dependency42.type=UsesDependency
-dependency43.from=Ship
-dependency43.to=Cutscene1
-dependency43.type=UsesDependency
-dependency44.from=Ship
-dependency44.to=Tutorial
-dependency44.type=UsesDependency
-dependency45.from=Ship
-dependency45.to=Boom
-dependency45.type=UsesDependency
-dependency46.from=Gorilla
-dependency46.to=SimpleTimer
-dependency46.type=UsesDependency
-dependency47.from=Gorilla
-dependency47.to=HealthBar
-dependency47.type=UsesDependency
-dependency48.from=Gorilla
-dependency48.to=Battlefield
-dependency48.type=UsesDependency
 dependency49.from=Gorilla
 dependency49.to=Tutorial
 dependency49.type=UsesDependency
->>>>>>> Stashed changes
 dependency5.from=Tutorial
 dependency5.to=Label
 dependency5.type=UsesDependency
@@ -299,13 +171,8 @@ editor.fx.0.width=0
 editor.fx.0.x=0
 editor.fx.0.y=0
 height=830
-<<<<<<< Updated upstream
-package.numDependencies=48
-package.numTargets=23
-=======
 package.numDependencies=52
 package.numTargets=26
->>>>>>> Stashed changes
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
@@ -328,254 +195,161 @@ target1.width=120
 target1.x=0
 target1.y=0
 target10.height=70
-<<<<<<< Updated upstream
-target10.name=tester
-=======
 target10.name=FireCounter
->>>>>>> Stashed changes
 target10.showInterface=false
 target10.type=ClassTarget
 target10.width=120
 target10.x=0
 target10.y=0
 target11.height=70
-<<<<<<< Updated upstream
-target11.name=ScoreKeeper
-=======
 target11.name=Coin
->>>>>>> Stashed changes
 target11.showInterface=false
 target11.type=ClassTarget
 target11.width=120
 target11.x=0
 target11.y=0
 target12.height=70
-<<<<<<< Updated upstream
-target12.name=Label2
-=======
 target12.name=Boom
->>>>>>> Stashed changes
 target12.showInterface=false
 target12.type=ClassTarget
 target12.width=120
 target12.x=0
 target12.y=0
 target13.height=70
-<<<<<<< Updated upstream
-target13.name=Coin
-=======
 target13.name=Sword
->>>>>>> Stashed changes
 target13.showInterface=false
 target13.type=ClassTarget
 target13.width=120
 target13.x=0
 target13.y=0
 target14.height=70
-<<<<<<< Updated upstream
-target14.name=Shop
-=======
 target14.name=Currency
->>>>>>> Stashed changes
 target14.showInterface=false
 target14.type=ClassTarget
 target14.width=120
 target14.x=0
 target14.y=0
 target15.height=70
-<<<<<<< Updated upstream
-target15.name=Boom
-=======
 target15.name=Cart
->>>>>>> Stashed changes
 target15.showInterface=false
 target15.type=ClassTarget
 target15.width=120
 target15.x=0
 target15.y=0
 target16.height=70
-<<<<<<< Updated upstream
-target16.name=Sword
-=======
 target16.name=Tutorial
->>>>>>> Stashed changes
 target16.showInterface=false
 target16.type=ClassTarget
 target16.width=120
 target16.x=0
 target16.y=0
 target17.height=70
-<<<<<<< Updated upstream
-target17.name=Currency
-=======
-target17.name=SimpleTimer
->>>>>>> Stashed changes
+target17.name=Label2
 target17.showInterface=false
 target17.type=ClassTarget
 target17.width=120
 target17.x=0
 target17.y=0
 target18.height=70
-<<<<<<< Updated upstream
-target18.name=Fire
-=======
-target18.name=Health
->>>>>>> Stashed changes
+target18.name=Shop
 target18.showInterface=false
 target18.type=ClassTarget
 target18.width=120
 target18.x=0
 target18.y=0
 target19.height=70
-<<<<<<< Updated upstream
-target19.name=Ship
-=======
-target19.name=Label2
->>>>>>> Stashed changes
+target19.name=DelayedSpawner
 target19.showInterface=false
 target19.type=ClassTarget
 target19.width=120
 target19.x=0
 target19.y=0
 target2.height=70
-target2.name=Tutorial
+target2.name=Cutscene1
 target2.showInterface=false
 target2.type=ClassTarget
 target2.width=120
 target2.x=0
 target2.y=0
 target20.height=70
-<<<<<<< Updated upstream
-target20.name=Gorilla
-=======
-target20.name=Shop
->>>>>>> Stashed changes
+target20.name=Fire
 target20.showInterface=false
 target20.type=ClassTarget
 target20.width=120
 target20.x=0
 target20.y=0
 target21.height=70
-<<<<<<< Updated upstream
-target21.name=Pet
-=======
-target21.name=DelayedSpawner
->>>>>>> Stashed changes
+target21.name=Ship
 target21.showInterface=false
 target21.type=ClassTarget
 target21.width=120
 target21.x=0
 target21.y=0
 target22.height=70
-<<<<<<< Updated upstream
-target22.name=Battlefield
-=======
-target22.name=Fire
->>>>>>> Stashed changes
+target22.name=Gorilla
 target22.showInterface=false
 target22.type=ClassTarget
 target22.width=120
 target22.x=0
 target22.y=0
 target23.height=70
-<<<<<<< Updated upstream
-target23.name=Cart
-=======
-target23.name=Ship
->>>>>>> Stashed changes
+target23.name=Pet
 target23.showInterface=false
 target23.type=ClassTarget
 target23.width=120
 target23.x=0
 target23.y=0
-<<<<<<< Updated upstream
-=======
 target24.height=70
-target24.name=Gorilla
+target24.name=Battlefield
 target24.showInterface=false
 target24.type=ClassTarget
 target24.width=120
 target24.x=0
 target24.y=0
-target25.height=70
-target25.name=Pet
-target25.showInterface=false
-target25.type=ClassTarget
-target25.width=120
-target25.x=0
-target25.y=0
-target26.height=70
-target26.name=Battlefield
-target26.showInterface=false
-target26.type=ClassTarget
-target26.width=120
-target26.x=0
-target26.y=0
->>>>>>> Stashed changes
 target3.height=70
-target3.name=Cutscene1
+target3.name=Titlescreen
 target3.showInterface=false
 target3.type=ClassTarget
 target3.width=120
 target3.x=0
 target3.y=0
 target4.height=70
-target4.name=Titlescreen
+target4.name=Human1
 target4.showInterface=false
 target4.type=ClassTarget
 target4.width=120
 target4.x=0
 target4.y=0
 target5.height=70
-<<<<<<< Updated upstream
-target5.name=Human1
-=======
 target5.name=Human2
->>>>>>> Stashed changes
 target5.showInterface=false
 target5.type=ClassTarget
 target5.width=120
 target5.x=0
 target5.y=0
 target6.height=70
-<<<<<<< Updated upstream
-target6.name=SimpleTimer
-=======
 target6.name=HealthBar
->>>>>>> Stashed changes
 target6.showInterface=false
 target6.type=ClassTarget
 target6.width=120
 target6.x=0
 target6.y=0
 target7.height=70
-<<<<<<< Updated upstream
-target7.name=Health
-=======
-target7.name=Label
->>>>>>> Stashed changes
+target7.name=ScoreKeeper
 target7.showInterface=false
 target7.type=ClassTarget
 target7.width=120
 target7.x=0
 target7.y=0
 target8.height=70
-<<<<<<< Updated upstream
-target8.name=HealthBar
-=======
-target8.name=ScoreKeeper
->>>>>>> Stashed changes
+target8.name=FireCount
 target8.showInterface=false
 target8.type=ClassTarget
 target8.width=120
 target8.x=0
 target8.y=0
 target9.height=70
-<<<<<<< Updated upstream
-target9.name=Label
-=======
-target9.name=FireCount
->>>>>>> Stashed changes
+target9.name=Coin
 target9.showInterface=false
 target9.type=ClassTarget
 target9.width=120
@@ -583,6 +357,6 @@ target9.x=0
 target9.y=0
 version=3.1.0
 width=1550
-world.lastInstantiated=Titlescreen
+world.lastInstantiated=Tutorial
 xPosition=0
 yPosition=0

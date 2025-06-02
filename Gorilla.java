@@ -122,6 +122,7 @@ public class Gorilla extends Actor {
             if (Greenfoot.isKeyDown("f")) {
                 if (!fPressed && Currency.coins >= 20) {
                     Currency.coins -= 20;
+                    FireCounter.fireTraps++;
                     fPressed = true;
                 }
             } else {
