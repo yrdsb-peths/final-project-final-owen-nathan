@@ -62,78 +62,7 @@ public class Gorilla extends Actor {
             handleMovement();
         }
         animateGorilla();
-
-        World world = getWorld();
-
-        // Leaving to Shop
-        if ((world instanceof Battlefield || world instanceof Tutorial) && getX() <= 0 && getY() <= 80) {
-            Shop shop = Shop.instance();
-            shop.setPreviousWorld(world);
-            Greenfoot.setWorld(shop);
-            return;
-        }
-
-        // Leaving Shop to Battlefield
-        if (world instanceof Shop && getX() >= 599 && getY() >= 350) {
-            Battlefield battlefield = Battlefield._instance();
-            Gorilla gorilla = Gorilla.getInstance();
-
-            if (!battlefield.getObjects(Gorilla.class).contains(gorilla)) {
-                battlefield.addObject(gorilla, 50, 50);
-                gorilla.updateHealthBarPosition();
-            }
-
-            Greenfoot.setWorld(battlefield);
-            return;
-        }
-
-        // Tutorial cross flag
-        if (world instanceof Tutorial && (getX() >= 400 || getX() <= 200)) {
-            ((Tutorial) world).crossed = true;
-        }
-
-        // Shop buy logic
-        if (world instanceof Shop) {
-            if (Greenfoot.isKeyDown("h")) {
-                if (!hPressed && Currency.coins >= 10) {
-                    Currency.coins -= 10;
-                    setHealth(maxHealth);  // Full health reset
-                    hPressed = true;
-
-                    // Ensure Gorilla is added back if missing
-                    if (!getWorld().getObjects(Gorilla.class).contains(this)) {
-                        getWorld().addObject(this, 550, 350);
-                        updateHealthBarPosition();
-                    }
-                }
-            } else {
-                hPressed = false;
-            }
-
-            if (Greenfoot.isKeyDown("p")) {
-                if (!pPressed && Currency.coins >= 50) {
-                    Currency.coins -= 50;
-                    pPressed = true;
-                }
-            } else {
-                pPressed = false;
-            }
-
-            if (Greenfoot.isKeyDown("f")) {
-                if (!fPressed && Currency.coins >= 20) {
-                    Currency.coins -= 20;
-                    FireCounter.fireTraps++;
-                    fPressed = true;
-                }
-            } else {
-                fPressed = false;
-            }
-        }
-        
-        if (Greenfoot.isKeyDown("f") && FireCounter.fireTraps > 0) {
-            placeTrap();
-            FireCounter.fireTraps--;
-        }
+        handleShopAndWorldLogic();
     }
 
     public void checkPunchKey() {
@@ -143,6 +72,10 @@ public class Gorilla extends Actor {
             punching = true;
             imageIndex = 0;
             animationTimer.mark();
+
+            int xOffset = facing.equals("right") ? 40 : -40;
+            PunchHitbox hitbox = new PunchHitbox();
+            getWorld().addObject(hitbox, getX() + xOffset, getY());
         }
 
         spacePressedLastFrame = spaceDown;
@@ -154,21 +87,16 @@ public class Gorilla extends Actor {
         animationTimer.mark();
 
         if (punching) {
-            if (facing.equals("right")) {
-                setImage(punchRight[imageIndex]);
-            } else {
-                setImage(punchLeft[imageIndex]);
-            }
-
+            setImage(facing.equals("right") ? punchRight[imageIndex] : punchLeft[imageIndex]);
             imageIndex++;
+
             if (imageIndex >= punchRight.length) {
                 punching = false;
                 imageIndex = 0;
                 setImage(facing.equals("right") ? walkRight[0] : walkLeft[0]);
             }
         } else {
-            if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") ||
-                Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("s")) {
+            if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("s")) {
                 setImage(facing.equals("right") ? walkRight[imageIndex] : walkLeft[imageIndex]);
                 imageIndex = (imageIndex + 1) % walkRight.length;
             } else {
@@ -195,15 +123,70 @@ public class Gorilla extends Actor {
         }
     }
 
-    public boolean isPunching() {
-        return punching;
+    public void handleShopAndWorldLogic() {
+        World world = getWorld();
+
+        if ((world instanceof Battlefield || world instanceof Tutorial) && getX() <= 0 && getY() <= 80) {
+            Shop shop = Shop.instance();
+            shop.setPreviousWorld(world);
+            Greenfoot.setWorld(shop);
+            return;
+        }
+
+        if (world instanceof Shop && getX() >= 599 && getY() >= 350) {
+            Battlefield battlefield = Battlefield._instance();
+            if (!battlefield.getObjects(Gorilla.class).contains(this)) {
+                battlefield.addObject(this, 50, 50);
+                updateHealthBarPosition();
+            }
+            Greenfoot.setWorld(battlefield);
+            return;
+        }
+
+        if (world instanceof Tutorial && (getX() >= 400 || getX() <= 200)) {
+            ((Tutorial) world).crossed = true;
+        }
+
+        // Shop upgrades
+        if (world instanceof Shop) {
+            if (Greenfoot.isKeyDown("h")) {
+                if (!hPressed && Currency.coins >= 10) {
+                    Currency.coins -= 10;
+                    setHealth(maxHealth);
+                    hPressed = true;
+                }
+            } else {
+                hPressed = false;
+            }
+
+            if (Greenfoot.isKeyDown("p")) {
+                if (!pPressed && Currency.coins >= 50) {
+                    Currency.coins -= 50;
+                    pPressed = true;
+                }
+            } else {
+                pPressed = false;
+            }
+
+            if (Greenfoot.isKeyDown("f")) {
+                if (!fPressed && Currency.coins >= 20) {
+                    Currency.coins -= 20;
+                    FireCounter.fireTraps++;
+                    fPressed = true;
+                }
+            } else {
+                fPressed = false;
+            }
+        }
+
+        if (Greenfoot.isKeyDown("f") && FireCounter.fireTraps > 0) {
+            placeTrap();
+            FireCounter.fireTraps--;
+        }
     }
 
     public void updateHealth(int change) {
-        currentHealth += change;
-        if (currentHealth < 0) currentHealth = 0;
-        if (currentHealth > maxHealth) currentHealth = maxHealth;
-
+        currentHealth = Math.max(0, Math.min(maxHealth, currentHealth + change));
         healthBar.updateHealth(change);
     }
 
@@ -220,7 +203,7 @@ public class Gorilla extends Actor {
             healthBar.setLocation(getX(), getY() - 50);
         }
     }
-    
+
     public void placeTrap() {
         Trap trap = new Trap();
         getWorld().addObject(trap, getX(), getY());
