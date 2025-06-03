@@ -129,6 +129,11 @@ public class Gorilla extends Actor {
                 fPressed = false;
             }
         }
+        
+        if (Greenfoot.isKeyDown("f") && FireCounter.fireTraps > 0) {
+            placeTrap();
+            FireCounter.fireTraps--;
+        }
     }
 
     public void checkPunchKey() {
@@ -214,5 +219,10 @@ public class Gorilla extends Actor {
             }
             healthBar.setLocation(getX(), getY() - 50);
         }
+    }
+    
+    public void placeTrap() {
+        Trap trap = new Trap();
+        getWorld().addObject(trap, getX(), getY());
     }
 }
