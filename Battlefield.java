@@ -100,7 +100,6 @@ public class Battlefield extends World {
     public Gorilla getGorilla() {
         return gorilla;
     }
-
     
     public void spawnHuman(int x, int y) {
         Human1 h1 = new Human1();

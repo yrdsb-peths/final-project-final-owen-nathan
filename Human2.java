@@ -11,7 +11,7 @@ public class Human2 extends Actor {
     GreenfootImage[] hurtAnimFlipped = new GreenfootImage[4];
 
     SimpleTimer animationTimer = new SimpleTimer();
-    
+
     int frame = 0;
     int hurtFrame = 0;
     int health = 2;
@@ -23,7 +23,6 @@ public class Human2 extends Actor {
     boolean scoreGiven = false;
     boolean hasDealtDamageThisPunch = false;
     private boolean wasJustHit = false;
-
 
     int speed = 2;
     int offsetX, offsetY;
@@ -97,25 +96,13 @@ public class Human2 extends Actor {
     private void checkGorillaPunch() {
         Actor gorilla = getOneIntersectingObject(Gorilla.class);
         if (gorilla != null && ((Gorilla) gorilla).isPunching()) {
-            if (!wasJustHit) {
-                health--;
-                wasJustHit = true;
-    
-                if (health <= 0) {
-                    isDead = true;
-                    frame = 0;
-                    animationTimer.mark();
-                } else {
-                    isHurt = true;
-                    hurtFrame = 0;
-                    animationTimer.mark();
-                }
+            if (!wasJustHit && !isDead && !isHurt) {
+                takeDamage();  // call takeDamage() instead of decrementing health here
             }
         } else {
-            wasJustHit = false; 
+            wasJustHit = false;
         }
     }
-
 
     private void playHurtAnimation() {
         if (animationTimer.millisElapsed() > 150) {
@@ -126,13 +113,15 @@ public class Human2 extends Actor {
             }
             hurtFrame++;
             animationTimer.mark();
-
+    
             if (hurtFrame >= hurtAnim.length) {
                 isHurt = false;
                 frame = 0;
+                wasJustHit = false;  // reset so can be hit again after hurt animation
             }
         }
     }
+
 
     private void playDeathAnimation() {
         if (!deathFinished && animationTimer.millisElapsed() > 200) {
@@ -182,4 +171,31 @@ public class Human2 extends Actor {
             gorilla.updateHealth(-5);
         }
     }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public boolean isPunching() {
+        return frame == 3 && !isDead && !isHurt;
+    }
+    
+    public void takeDamage() {
+        if (!wasJustHit && !isDead && !isHurt) {
+            health--;
+            wasJustHit = true;
+    
+            if (health <= 0) {
+                isDead = true;
+                frame = 0;
+                animationTimer.mark();
+            } else {
+                isHurt = true;
+                hurtFrame = 0;
+                animationTimer.mark();
+            }
+        }
+    }
+
+
 }
