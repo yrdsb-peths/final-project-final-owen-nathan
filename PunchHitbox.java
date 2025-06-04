@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 public class PunchHitbox extends Actor {
-    private int lifespan = 12; // frames to exist before disappearing
+    private int lifespan = 20; // frames to exist before disappearing
     private int age = 0;
 
     public PunchHitbox() {

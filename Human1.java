@@ -94,7 +94,7 @@ public class Human1 extends Actor {
         animationTimer.mark();
 
         if (!punching) {
-            if (Greenfoot.getRandomNumber(100) < 10) { // 10% chance to start punch
+            if (Greenfoot.getRandomNumber(100) < 30) { // 30% chance to start punch
                 punching = true;
                 punchFrame = 0;
                 hasDealtDamageThisPunch = false;

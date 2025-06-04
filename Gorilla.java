@@ -73,7 +73,7 @@ public class Gorilla extends Actor {
             imageIndex = 0;
             animationTimer.mark();
 
-            int xOffset = facing.equals("right") ? 40 : -40;
+            int xOffset = facing.equals("right") ? 50 : -50;
             PunchHitbox hitbox = new PunchHitbox();
             getWorld().addObject(hitbox, getX() + xOffset, getY());
         }
@@ -82,7 +82,7 @@ public class Gorilla extends Actor {
     }
 
     public void animateGorilla() {
-        int delay = punching ? 200 : 100;
+        int delay = punching ? 200 : 50;
         if (animationTimer.millisElapsed() < delay) return;
         animationTimer.mark();
 
@@ -207,5 +207,9 @@ public class Gorilla extends Actor {
     public void placeTrap() {
         Trap trap = new Trap();
         getWorld().addObject(trap, getX(), getY());
+    }
+    
+    public boolean isPunching() {
+        return punching;
     }
 }
