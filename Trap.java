@@ -5,11 +5,11 @@ public class Trap extends Actor {
     private int frame = 0;
     private int animationCounter = 0;
     private final int ANIMATION_SPEED = 5;
-
+    //only works against first class humans to make the game harder
     public Trap() {
         for (int i = 0; i < fireFrames.length; i++) {
             fireFrames[i] = new GreenfootImage("Fire_" + i + ".png");
-            fireFrames[i].scale(80, 80);
+            fireFrames[i].scale(30, 30);
         }
         setImage(fireFrames[0]);
     }

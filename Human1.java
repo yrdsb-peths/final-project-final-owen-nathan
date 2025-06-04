@@ -53,6 +53,7 @@ public class Human1 extends Actor
             moveTowardGorilla();
             punchLoop();
             checkGorillaPunch();
+            checkTrap();
         } else {
             playDeathAnimation();
             if (!scoreGiven) {
@@ -66,7 +67,16 @@ public class Human1 extends Actor
             }
         }
     }
-
+    
+    private void checkTrap() {
+        Actor trap = getOneIntersectingObject(Trap.class);
+        if(isTouching(Trap.class)) {
+            isDead = true;
+            frame = 0;
+            animationTimer.mark();
+        }
+    }
+    
     private void moveTowardGorilla() {
         World world = getWorld();
         if (world == null) return;

@@ -5,7 +5,7 @@
  * @version (a version number or a date)
  */
 public class FireCounter {
-    public static int fireTraps = 1;
+    public static int fireTraps = 0;
 
     public static void addTrap(int amount) {
         fireTraps += amount;

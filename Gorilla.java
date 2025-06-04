@@ -130,7 +130,7 @@ public class Gorilla extends Actor {
             }
         }
         
-        if (Greenfoot.isKeyDown("f") && FireCounter.fireTraps > 0) {
+        if (world instanceof Battlefield && Greenfoot.isKeyDown("f") && FireCounter.fireTraps > 0) {
             placeTrap();
             FireCounter.fireTraps--;
         }
