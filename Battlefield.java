@@ -107,55 +107,85 @@ public class Battlefield extends World {
         addObject(h1, x, y);
     }
     
+    public void spawnHuman2(int x, int y) {
+        Human2 h2 = new Human2();
+        addObject(h2, x, y);
+    }
+    
     public void startWave(int num) {
         switch(num) {
             case 1: wave1(); break;
             case 2: wave2(); break;
             case 3: wave3(); break;
+            case 4: wave4(); break;
             default: break;
         }
     }
     
     public void wave1() {
         Battlefield world = this;
-    
-        world.addObject(new DelayedSpawner(0, 550, Greenfoot.getRandomNumber(400)), 0, 0);
-        world.addObject(new DelayedSpawner(30, Greenfoot.getRandomNumber(600), 60), 0, 0);
-        world.addObject(new DelayedSpawner(60, 550, Greenfoot.getRandomNumber(400)), 0, 0);
-        world.addObject(new DelayedSpawner(90, Greenfoot.getRandomNumber(600), 150), 0, 0);
-        world.addObject(new DelayedSpawner(120, 550, Greenfoot.getRandomNumber(400)), 0, 0);
+        //total enemies: 6
+        world.addObject(new DelayedSpawner(0, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(30, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(90, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(120, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
     }
 
     
     public void wave2() {
-        spawnHuman(100, 50);
-        spawnHuman(500, 60);
-        spawnHuman(100, 110);
-        spawnHuman(500, 150);
-        spawnHuman(100, 200);
-        spawnHuman(500, 250);
+        Battlefield world = this;    
+        //total enemies: 12
+        world.addObject(new DelayedSpawner(0, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner2(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(120, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner2(180, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(240, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner2(300, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+
     }
     
     public void wave3() {
-        spawnHuman(150, 50);
-        spawnHuman(450, 100);
-        spawnHuman(150, 150);
-        spawnHuman(450, 200);
-        spawnHuman(150, 250);
-        spawnHuman(450, 300);
+        Battlefield world = this;
+        //total enemies: 20
+        world.addObject(new DelayedSpawner2(0, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+    }
+    
+    public void wave4() {
+        Battlefield world = this;
+        //total enemies: 30
+        world.addObject(new DelayedSpawner(0, 100, 50), 0, 0);
+        world.addObject(new DelayedSpawner(0, 300, 50), 0, 0);
+        world.addObject(new DelayedSpawner(0, 500, 50), 0, 0);
+        world.addObject(new DelayedSpawner(0, 100, 200), 0, 0);
+        world.addObject(new DelayedSpawner(0, 200, 200), 0, 0);
+        world.addObject(new DelayedSpawner(0, 500, 200), 0, 0);
+        world.addObject(new DelayedSpawner(0, 100, 350), 0, 0);
+        world.addObject(new DelayedSpawner(0, 300, 350), 0, 0);
+        world.addObject(new DelayedSpawner(0, 500, 350), 0, 0);
+        world.addObject(new DelayedSpawner(0, 400, 200), 0, 0);
     }
     
     public boolean waveCleared() {
         if (waveNumber == 1) return ScoreKeeper.score >= 6;
         if (waveNumber == 2) return ScoreKeeper.score >= 12;
-        if (waveNumber == 3) return ScoreKeeper.score >= 18;
+        if (waveNumber == 3) return ScoreKeeper.score >= 20;
+        if (waveNumber == 4) return ScoreKeeper.score >= 30;
         return false;
     }
 
     public void giveWaveReward(int wave) {
         if (wave == 1) Currency.addCoins(5);
-        if (wave == 2) Currency.addCoins(10);
-        if (wave == 3) Currency.addCoins(20);
+        if (wave == 2) Currency.addCoins(9);
+        if (wave == 3) Currency.addCoins(9);//total coins: 24
+        if (wave == 4) Currency.addCoins(10);
     }
 
     
