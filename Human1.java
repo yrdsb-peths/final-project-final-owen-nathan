@@ -1,9 +1,8 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 import java.util.List;
 import java.util.Random;
 
-public class Human1 extends Actor
-{
+public class Human1 extends Actor {
     GreenfootImage[] punchAnim = new GreenfootImage[4];
     GreenfootImage[] punchAnimFlipped = new GreenfootImage[4];
     GreenfootImage[] deathAnim = new GreenfootImage[5];
@@ -18,10 +17,10 @@ public class Human1 extends Actor
 
     int speed = 1;
     int offsetX, offsetY;
+    boolean punching = false;
+    int punchFrame = 0;
+    boolean hasDealtDamageThisPunch = false;
 
-    private boolean hasDealtDamageThisPunch = false;
-    
-    
     public Human1() {
         for (int i = 0; i < 4; i++) {
             punchAnim[i] = new GreenfootImage("Human1_Punch" + i + ".png");
@@ -42,9 +41,8 @@ public class Human1 extends Actor
         setImage(punchAnim[0]);
         animationTimer.mark();
 
-        // Small random offset to prevent stacking of enemy
         Random rand = new Random();
-        offsetX = rand.nextInt(41) - 20; 
+        offsetX = rand.nextInt(41) - 20;
         offsetY = rand.nextInt(41) - 20;
     }
 
@@ -53,7 +51,6 @@ public class Human1 extends Actor
             moveTowardGorilla();
             punchLoop();
             checkGorillaPunch();
-            checkTrap();
         } else {
             playDeathAnimation();
             if (!scoreGiven) {
@@ -67,16 +64,7 @@ public class Human1 extends Actor
             }
         }
     }
-    
-    private void checkTrap() {
-        Actor trap = getOneIntersectingObject(Trap.class);
-        if(isTouching(Trap.class)) {
-            isDead = true;
-            frame = 0;
-            animationTimer.mark();
-        }
-    }
-    
+
     private void moveTowardGorilla() {
         World world = getWorld();
         if (world == null) return;
@@ -85,23 +73,78 @@ public class Human1 extends Actor
 
         Gorilla gorilla = gorillas.get(0);
 
-        int dx = (gorilla.getX() + offsetX) - getX();
-        int dy = (gorilla.getY() + offsetY) - getY();
+        int dx = gorilla.getX() + offsetX - getX();
+        int dy = gorilla.getY() + offsetY - getY();
 
         facingRight = dx >= 0;
 
-        if (Math.abs(dx) > speed) {
-            setLocation(getX() + (dx > 0 ? speed : -speed), getY());
+        if (!punching) {
+            if (Math.abs(dx) > 5) {
+                setLocation(getX() + (dx > 0 ? speed : -speed), getY());
+            }
+            if (Math.abs(dy) > 5) {
+                setLocation(getX(), getY() + (dy > 0 ? speed : -speed));
+            }
         }
+    }
 
-        if (Math.abs(dy) > speed) {
-            setLocation(getX(), getY() + (dy > 0 ? speed : -speed));
+    private void punchLoop() {
+        int delay = 250;
+        if (animationTimer.millisElapsed() < delay) return;
+        animationTimer.mark();
+
+        if (!punching) {
+            if (Greenfoot.getRandomNumber(100) < 30) { // 30% chance to start punch
+                punching = true;
+                punchFrame = 0;
+                hasDealtDamageThisPunch = false;
+            }
+        } else {
+            if (facingRight) {
+                setImage(punchAnim[punchFrame]);
+            } else {
+                setImage(punchAnimFlipped[punchFrame]);
+            }
+
+            if (punchFrame == 2 && !hasDealtDamageThisPunch) {
+                dealDamageToGorilla();
+                hasDealtDamageThisPunch = true;
+            }
+
+            punchFrame++;
+            if (punchFrame >= punchAnim.length) {
+                punching = false;
+            }
+        }
+    }
+
+    private void dealDamageToGorilla() {
+        World world = getWorld();
+        if (world == null) return;
+        List<Gorilla> gorillas = world.getObjects(Gorilla.class);
+        if (gorillas.isEmpty()) return;
+
+        Gorilla gorilla = gorillas.get(0);
+        if (this.intersects(gorilla)) {
+            gorilla.updateHealth(-10);
         }
     }
 
     private void checkGorillaPunch() {
-        Actor gorilla = getOneIntersectingObject(Gorilla.class);
-        if (gorilla != null && ((Gorilla)gorilla).isPunching()) {
+        World world = getWorld();
+        if (world == null) return;
+        List<PunchHitbox> hits = world.getObjects(PunchHitbox.class);
+        for (PunchHitbox hitbox : hits) {
+            if (this.intersects(hitbox) && !isDead) {
+                takeDamage();
+                world.removeObject(hitbox);
+                break;
+            }
+        }
+    }
+
+    public void takeDamage() {
+        if (!isDead) {
             isDead = true;
             frame = 0;
             animationTimer.mark();
@@ -109,52 +152,30 @@ public class Human1 extends Actor
     }
 
     private void playDeathAnimation() {
-        if (!deathFinished && animationTimer.millisElapsed() > 200) {
-            if (facingRight) {
-                setImage(deathAnim[frame]);
-            } else {
-                setImage(deathAnimFlipped[frame]);
-            }
-            frame++;
-            animationTimer.mark();
+        if (deathFinished) return;
 
-            if (frame >= deathAnim.length) {
-                deathFinished = true;
-                if (getWorld() != null) {
-                    getWorld().removeObject(this);
-                }
-            }
+        int delay = 150;
+        if (animationTimer.millisElapsed() < delay) return;
+        animationTimer.mark();
+
+        if (facingRight) {
+            setImage(deathAnim[frame]);
+        } else {
+            setImage(deathAnimFlipped[frame]);
         }
-    }
-    
-    private void punchLoop() {
-        if (animationTimer.millisElapsed() > 200) {
-            if (facingRight) {
-                setImage(punchAnim[frame]);
-            } else {
-                setImage(punchAnimFlipped[frame]);
-            }
-    
-            if (frame == 3 && !hasDealtDamageThisPunch) {
-                dealDamageToGorilla();
-                hasDealtDamageThisPunch = true;
-            }
-    
-            frame = (frame + 1) % punchAnim.length;
-    
-            // Reset damage ability at the start of each punch
-            if (frame == 0) {
-                hasDealtDamageThisPunch = false;
-            }
-    
-            animationTimer.mark();
+
+        frame++;
+        if (frame >= deathAnim.length) {
+            deathFinished = true;
+            getWorld().removeObject(this);
         }
     }
 
-    private void dealDamageToGorilla() {
-        Gorilla gorilla = (Gorilla)getOneIntersectingObject(Gorilla.class);
-        if (gorilla != null) {
-            gorilla.updateHealth(-2);  // Apply damage to Gorilla
-        }
-    }   
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public boolean isPunching() {
+        return punching;
+    }
 }
