@@ -7,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Currency {
-    public static int coins = 1;
+    public static int coins = 10;
 
     public static void addCoins(int amount) {
         coins += amount;

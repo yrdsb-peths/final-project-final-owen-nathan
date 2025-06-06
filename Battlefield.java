@@ -195,9 +195,9 @@ public class Battlefield extends World {
     public void giveWaveReward(int wave) {
         if (wave == 1) Currency.addCoins(10);
         if (wave == 2) Currency.addCoins(20);
-        if (wave == 3) Currency.addCoins(20);//total coins: 51
+        if (wave == 3) Currency.addCoins(20);//total coins: 60
         if (wave == 4) Currency.addCoins(30);
-        if (wave == 5) Currency.addCoins(40);//total coins: 121
+        if (wave == 5) Currency.addCoins(40);//total coins: 130
     }
 
     
