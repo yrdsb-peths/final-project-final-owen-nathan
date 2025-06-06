@@ -172,19 +172,32 @@ public class Battlefield extends World {
         world.addObject(new DelayedSpawner(0, 400, 200), 0, 0);
     }
     
+    public void wave5() {
+        Battlefield world = this;
+        //total enemies: 35
+        world.addObject(new DelayedSpawner2(0, 50, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(0, 150, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(0, 250, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(0, 350, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(0, 450, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(0, 550, 50), 0, 0);
+    }
+    
     public boolean waveCleared() {
         if (waveNumber == 1) return ScoreKeeper.score >= 6;
         if (waveNumber == 2) return ScoreKeeper.score >= 12;
         if (waveNumber == 3) return ScoreKeeper.score >= 20;
         if (waveNumber == 4) return ScoreKeeper.score >= 30;
+        if (waveNumber == 5) return ScoreKeeper.score >= 35;
         return false;
     }
 
     public void giveWaveReward(int wave) {
-        if (wave == 1) Currency.addCoins(5);
-        if (wave == 2) Currency.addCoins(9);
-        if (wave == 3) Currency.addCoins(9);//total coins: 24
-        if (wave == 4) Currency.addCoins(10);
+        if (wave == 1) Currency.addCoins(10);
+        if (wave == 2) Currency.addCoins(20);
+        if (wave == 3) Currency.addCoins(20);//total coins: 51
+        if (wave == 4) Currency.addCoins(30);
+        if (wave == 5) Currency.addCoins(40);//total coins: 121
     }
 
     
