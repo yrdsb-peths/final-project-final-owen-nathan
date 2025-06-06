@@ -17,8 +17,10 @@ public class Gorilla extends Actor {
     private int maxHealth = 100;
     private static Gorilla instance;
     private boolean hPressed = false;
-    private boolean pPressed = false;
     private boolean fPressed = false;
+
+    private Elephant pet;
+    private boolean hasPet = false;
 
     public static Gorilla getInstance() {
         if (instance == null) {
@@ -63,6 +65,8 @@ public class Gorilla extends Actor {
         }
         animateGorilla();
         handleShopAndWorldLogic();
+
+        if (hasPet) updatePetPosition();
     }
 
     public void checkPunchKey() {
@@ -147,7 +151,6 @@ public class Gorilla extends Actor {
             ((Tutorial) world).crossed = true;
         }
 
-        // Shop upgrades
         if (world instanceof Shop) {
             if (Greenfoot.isKeyDown("h")) {
                 if (!hPressed && Currency.coins >= 10) {
@@ -160,12 +163,11 @@ public class Gorilla extends Actor {
             }
 
             if (Greenfoot.isKeyDown("p")) {
-                if (!pPressed && Currency.coins >= 50) {
+                if (Currency.coins >= 50 && !hasPet) {
                     Currency.coins -= 50;
-                    pPressed = true;
+                    givePet();
+                    hasPet = true;
                 }
-            } else {
-                pPressed = false;
             }
 
             if (Greenfoot.isKeyDown("f")) {
@@ -178,7 +180,7 @@ public class Gorilla extends Actor {
                 fPressed = false;
             }
         }
-        
+
         if (world instanceof Battlefield && Greenfoot.isKeyDown("f") && FireCounter.fireTraps > 0) {
             placeTrap();
             FireCounter.fireTraps--;
@@ -208,7 +210,27 @@ public class Gorilla extends Actor {
         Trap trap = new Trap();
         getWorld().addObject(trap, getX(), getY());
     }
-    
+
+    public void givePet() {
+        if (!hasPet) {
+            pet = new Elephant();
+            hasPet = true;
+            if (getWorld() != null) {
+                getWorld().addObject(pet, getX() - 40, getY() + 30);
+            }
+        }
+    }
+
+    public void updatePetPosition() {
+        if (getWorld() != null && pet != null) {
+            if (!getWorld().getObjects(Elephant.class).contains(pet)) {
+                getWorld().addObject(pet, getX() - 40, getY() + 30);
+            } else {
+                pet.setLocation(getX() - 40, getY() + 30);
+            }
+        }
+    }
+
     public boolean isPunching() {
         return punching;
     }
