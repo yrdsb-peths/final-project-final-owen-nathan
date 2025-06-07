@@ -5,8 +5,11 @@ public class Battlefield extends World {
     Label waveLabel;
     Label coinLabel;
     Label fireLabel;
+    Label finalLabel;
+    
     Cart cart = new Cart();
     GreenfootSound startSound = new GreenfootSound("battle_horn_1-6931.mp3");
+    GreenfootSound finalSound = new GreenfootSound("medieval-horn-by-kris-klavenes-wav-77565.mp3");
     
     int waveNumber = 1;
     public boolean ready = false; 
@@ -16,7 +19,7 @@ public class Battlefield extends World {
     
     private static Battlefield instance_;
     public static boolean finalWave = false;
-    
+    public static boolean finalEnter = false;
     Label start = new Label("Press enter to face enemies", 30);
     
     public static Battlefield _instance() {
@@ -66,16 +69,20 @@ public class Battlefield extends World {
         gorilla.updateHealthBarPosition();
     }
     
+    boolean waveInProgress = false;  // add this as a class member
+
     public void act() {
         scoreLabel.setValue(ScoreKeeper.score);
         coinLabel.setValue("" + Currency.getCoins());
         fireLabel.setValue("" + FireCounter.getTraps());
-
-        if (finalWave) {
+    
+        // Announce final wave only if not announced and no wave in progress
+        if (finalWave && !waveAnnounced && !waveInProgress) {
             announceWave2();
+            waveAnnounced = true;
         }
-
-        if (!finalWave && waveCleared() && ready) {
+        // Announce normal wave only if cleared, ready, no wave in progress
+        else if (!finalWave && waveCleared() && ready && !waveInProgress) {
             if (!coinsGiven) {
                 giveWaveReward(waveNumber);
                 coinsGiven = true;
@@ -89,19 +96,42 @@ public class Battlefield extends World {
             announceWave();
             waveAnnounced = true;
         }
-
-        if (!ready && waveAnnounced && Greenfoot.isKeyDown("enter")) {
-            if (waveLabel != null) {
+    
+        // Start final wave when enter pressed
+        if (!ready && finalWave && waveAnnounced && !waveInProgress && Greenfoot.isKeyDown("enter")) {
+            if (finalLabel != null && finalLabel.getWorld() != null) {
+                finalSound.play();
+                waveStarted = true;
+                removeObject(finalLabel);
+                finalLabel = null;
+                removeObject(start);
+                removeObject(cart);
+                waveAnnounced = false; // This will only allow a new announce once waveInProgress is false
+                startWave(waveNumber);
+                waveInProgress = true;  // Mark wave started
+                ready = true;
+            }
+        }
+        // Start normal wave when enter pressed
+        else if (!ready && waveAnnounced && !finalWave && !waveInProgress && Greenfoot.isKeyDown("enter")) {
+            if (waveLabel != null && waveLabel.getWorld() != null) {
                 startSound.play();
                 waveStarted = true;
                 removeObject(waveLabel);
+                waveLabel = null;
                 removeObject(start);
                 removeObject(cart);
+                waveAnnounced = false; // Same as above
+                coinsGiven = false;
+                startWave(waveNumber);
+                waveInProgress = true;
+                ready = true;
             }
-            startWave(waveNumber);
-            ready = true;
-            waveAnnounced = false;
-            coinsGiven = false;
+        }
+    
+        // When the wave is cleared, mark waveInProgress false so new announce can happen
+        if (waveInProgress && waveCleared()) {
+            waveInProgress = false;
         }
     }
 
@@ -131,6 +161,7 @@ public class Battlefield extends World {
             case 6: wave6(); break;
             case 7: wave7(); break;
             case 8: wave8(); break;
+            case 9: wave9(); break;
             default: break;
         }
     }
@@ -188,10 +219,10 @@ public class Battlefield extends World {
         Battlefield world = this;
         //total enemies: 35
         world.addObject(new DelayedSpawner2(0, 50, 50), 0, 0);
-        world.addObject(new DelayedSpawner2(0, 150, 50), 0, 0);
-        world.addObject(new DelayedSpawner2(0, 250, 50), 0, 0);
-        world.addObject(new DelayedSpawner2(0, 350, 50), 0, 0);
-        world.addObject(new DelayedSpawner2(0, 450, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(60, 150, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(120, 250, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(180, 350, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(240, 450, 50), 0, 0);
     }
     
     public void wave6() {
@@ -233,41 +264,47 @@ public class Battlefield extends World {
         world.addObject(new DelayedSpawner(0, 500, 275), 0, 0);
         world.addObject(new DelayedSpawner(0, 500, 350), 0, 0);
         
-        world.addObject(new DelayedSpawner(60, 500, 50), 0, 0);
-        world.addObject(new DelayedSpawner(60, 500, 125), 0, 0);
-        world.addObject(new DelayedSpawner(60, 500, 200), 0, 0);
-        world.addObject(new DelayedSpawner(60, 500, 275), 0, 0);
-        world.addObject(new DelayedSpawner(60, 500, 350), 0, 0);
+        world.addObject(new DelayedSpawner(60, 100, 50), 0, 0);
+        world.addObject(new DelayedSpawner(60, 100, 125), 0, 0);
+        world.addObject(new DelayedSpawner(60, 100, 200), 0, 0);
+        world.addObject(new DelayedSpawner(60, 100, 275), 0, 0);
+        world.addObject(new DelayedSpawner(60, 100, 350), 0, 0);
         
-        world.addObject(new DelayedSpawner2(120, 500, 50), 0, 0);
-        world.addObject(new DelayedSpawner2(120, 500, 125), 0, 0);
-        world.addObject(new DelayedSpawner2(120, 500, 200), 0, 0);
-        world.addObject(new DelayedSpawner2(120, 500, 275), 0, 0);
-        world.addObject(new DelayedSpawner2(120, 500, 350), 0, 0);
+        world.addObject(new DelayedSpawner2(180, 500, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(240, 500, 125), 0, 0);
+        world.addObject(new DelayedSpawner2(300, 500, 200), 0, 0);
+        world.addObject(new DelayedSpawner2(360, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner2(420, 500, 350), 0, 0);
     }
     
     public void wave8() {
         Battlefield world = this;
         //total enemies: 90
         world.addObject(new DelayedSpawner2(0, 500, 50), 0, 0);
-        world.addObject(new DelayedSpawner2(0, 500, 125), 0, 0);
-        world.addObject(new DelayedSpawner2(0, 500, 200), 0, 0);
-        world.addObject(new DelayedSpawner2(0, 500, 275), 0, 0);
-        world.addObject(new DelayedSpawner2(0, 500, 350), 0, 0);
-        
-        world.addObject(new DelayedSpawner2(60, 500, 50), 0, 0);
         world.addObject(new DelayedSpawner2(60, 500, 125), 0, 0);
-        world.addObject(new DelayedSpawner2(60, 500, 200), 0, 0);
-        world.addObject(new DelayedSpawner2(60, 500, 275), 0, 0);
-        world.addObject(new DelayedSpawner2(60, 500, 350), 0, 0);
-        
-        world.addObject(new DelayedSpawner2(120, 500, 50), 0, 0);
-        world.addObject(new DelayedSpawner2(120, 500, 125), 0, 0);
         world.addObject(new DelayedSpawner2(120, 500, 200), 0, 0);
-        world.addObject(new DelayedSpawner2(120, 500, 275), 0, 0);
-        world.addObject(new DelayedSpawner2(120, 500, 350), 0, 0);
+        world.addObject(new DelayedSpawner2(240, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner2(200, 500, 350), 0, 0);
+        
+        world.addObject(new DelayedSpawner2(360, 500, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(420, 500, 125), 0, 0);
+        world.addObject(new DelayedSpawner2(480, 500, 200), 0, 0);
+        world.addObject(new DelayedSpawner2(540, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner2(600, 500, 350), 0, 0);
+        
+        world.addObject(new DelayedSpawner2(660, 500, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(720, 500, 125), 0, 0);
+        world.addObject(new DelayedSpawner2(780, 500, 200), 0, 0);
+        world.addObject(new DelayedSpawner2(840, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner2(900, 500, 350), 0, 0);
     }
-
+    
+    public void wave9() {
+        Battlefield world = this;
+        
+        world.addObject(new DelayedSpawner(0, 300, 200), 0, 0);
+    }
+    
     public boolean waveCleared() {
         if (waveNumber == 1) return ScoreKeeper.score >= 6;
         if (waveNumber == 2) return ScoreKeeper.score >= 12;
@@ -292,8 +329,8 @@ public class Battlefield extends World {
     }
 
     public void announceWave2() {
-        waveLabel = new Label("Final Wave", 60);
-        addObject(waveLabel, getWidth() / 2, getHeight() / 2);
+        finalLabel = new Label("Final Wave", 60);
+        addObject(finalLabel, getWidth() / 2, getHeight() / 2);
         addObject(start, 300, 250);
         addObject(cart, 25, 40);
         waveStarted = false;

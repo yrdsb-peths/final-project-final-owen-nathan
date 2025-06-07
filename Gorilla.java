@@ -14,6 +14,7 @@ public class Gorilla extends Actor {
     GreenfootSound battleSound = new GreenfootSound("battle_horn_1-6931.mp3");
     GreenfootSound deathSound = new GreenfootSound("zombie-3-106344.mp3");
     GreenfootSound firePlaceSound = new GreenfootSound("lighter-click-fire-woosh-326482.mp3");
+    
     GreenfootImage grave = new GreenfootImage("images/Zombie_Grave-removebg-preview.png");
         
     String facing = "right";
