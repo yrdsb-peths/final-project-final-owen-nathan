@@ -98,7 +98,7 @@ public class Battlefield extends World {
             Gorilla.dead = false;
             Gorilla.resetInstance();
             Battlefield.resetInstance();
-            Currency.coins = 100;
+            Currency.coins = 0;
             FireCounter.fireTraps = 0;
             ScoreKeeper.score = 1;
             //new bf 
@@ -354,7 +354,7 @@ public class Battlefield extends World {
         if (wave == 5) Currency.addCoins(40);
         if (wave == 6) Currency.addCoins(60);
         if (wave == 7) Currency.addCoins(80);
-        if (wave == 8) Currency.addCoins(100);
+        if (wave == 8) Currency.addCoins(100);//total coins 360
     }
 
     public void announceWave2() {
