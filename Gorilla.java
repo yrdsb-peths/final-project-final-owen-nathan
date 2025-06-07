@@ -29,12 +29,13 @@ public class Gorilla extends Actor {
     private static Gorilla instance;
     private boolean hPressed = false;
     private boolean fPressed = false;
-    private boolean isDead = false;
+    public static boolean isDead = false;
 
+    public static boolean dead = false;
+    
     private Elephant pet;
-    private boolean hasPet = false;
+    public static boolean hasPet = false;
 
-    private boolean isDead = false;
     private boolean deathSoundPlayed = false;
 
     public static Gorilla getInstance() {
@@ -243,8 +244,9 @@ public class Gorilla extends Actor {
         healthBar.updateHealth(change);
     
         if (currentHealth <= 0 && !isDead) {
-            //die();
-          Greenfoot.setWorld(new EndScreen());
+            die();
+            dead = true;
+            //Greenfoot.setWorld(new EndScreen());
         }
     }
 
@@ -252,13 +254,7 @@ public class Gorilla extends Actor {
         isDead = true;
         punching = false;
         imageIndex = 0;
-    
-        if (getWorld() != null) {
-            // Optional: stop the game, show message, remove Gorilla, etc.
-            // Greenfoot.stop();  // Pause the game
-        }
     }
-
 
     public void setHealth(int value) {
         currentHealth = value;
@@ -302,7 +298,6 @@ public class Gorilla extends Actor {
     public boolean isPunching() {
         return punching;
     }
-}
     
     public static void resetInstance() {
         instance = null;

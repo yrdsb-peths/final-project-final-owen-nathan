@@ -15,30 +15,28 @@ public class Battlefield extends World {
     public boolean ready = false; 
     boolean waveAnnounced = false;
     boolean coinsGiven = false;
-
     public static boolean waveStarted = false;
+    
+    public static boolean deadShown = false;
+    public static boolean newShown = false;
     
     private static Battlefield instance_;
     public static boolean finalWave = false;
     public static boolean finalEnter = false;
-
     Label start = new Label("Press enter to face enemies", 30);
-    private static Battlefield instance_;
-
+    TimedLabel deadLabel = new TimedLabel("Gorilla has Fallen!", 60, 120);
+    TimedLabel newStart = new TimedLabel("Press R to Restart", 30, 120);
     public static Battlefield _instance() {
-        if (instance_ == null) {
+        if(instance_ == null) {
             instance_ = new Battlefield();
         }
         return instance_;
     }
-
-    public static void resetInstance() {
-        instance_ = null;
-    }
     
-    public Battlefield() {
+    private Battlefield() {
         super(600, 400, 1);
-        instance_ = this;  // Assign the newly created instance to static variable
+        ScoreKeeper.score = 1;
+        
         GreenfootImage worldBG = new GreenfootImage("images/dgggoyk-fdd28b15-79e9-4a3d-a8bd-d7d966e77900.jpg");
         worldBG.scale(600, 400);
         setBackground(worldBG);
@@ -75,16 +73,38 @@ public class Battlefield extends World {
         gorilla.updateHealthBarPosition();
     }
     
-    boolean waveInProgress = false;  // add this as a class member
+    boolean waveInProgress = false;
 
     public void act() {
-        if (Greenfoot.isKeyDown("r")) {
-            Greenfoot.setWorld(new EndScreen());
-        }
         scoreLabel.setValue(ScoreKeeper.score);
         coinLabel.setValue("" + Currency.getCoins());
         fireLabel.setValue("" + FireCounter.getTraps());
-    
+        
+        if (Gorilla.dead && !deadShown && !newShown) {
+            deadShown = true;
+            newShown = true;
+            addObject(deadLabel, 300, 200);
+            addObject(newStart, 300, 250);
+        }
+        
+        if (deadShown && newShown && Greenfoot.isKeyDown("r")) {
+            //reset all game properties
+            deadShown = false;
+            newShown = false;
+            Gorilla.hasPet = false;
+            Battlefield.waveStarted = false;
+            Ship.played = true;
+            Gorilla.isDead = false;
+            Gorilla.dead = false;
+            Gorilla.resetInstance();
+            Battlefield.resetInstance();
+            Currency.coins = 100;
+            FireCounter.fireTraps = 0;
+            ScoreKeeper.score = 1;
+            //new bf 
+            Battlefield bf = new Battlefield();        
+            Greenfoot.setWorld(bf);
+        }
         // Announce final wave only if not announced and no wave in progress
         if (finalWave && !waveAnnounced && !waveInProgress) {
             announceWave2();
@@ -352,9 +372,13 @@ public class Battlefield extends World {
         addObject(cart, 25, 40);
         waveStarted = false;
     }
-
+    
     public void increaseScore() {
         ScoreKeeper.score++;
         scoreLabel.setValue(ScoreKeeper.score);
+    }
+    
+    public static void resetInstance() {
+        instance_ = null;
     }
 }

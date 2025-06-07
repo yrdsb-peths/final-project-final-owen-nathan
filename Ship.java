@@ -3,7 +3,7 @@ import greenfoot.*;
 public class Ship extends Actor {
     public static int x = 0;
     GreenfootSound fallingSound = new GreenfootSound("bomb-dropping-101151.mp3");
-    private static boolean played = false;
+    public static boolean played = false;
     
     public void act() {
         setLocation(getX(), getY() + 2);
