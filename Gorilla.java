@@ -19,6 +19,7 @@ public class Gorilla extends Actor {
     private boolean hPressed = false;
     private boolean pPressed = false;
     private boolean fPressed = false;
+    private boolean isDead = false;
 
     public static Gorilla getInstance() {
         if (instance == null) {
@@ -188,6 +189,11 @@ public class Gorilla extends Actor {
     public void updateHealth(int change) {
         currentHealth = Math.max(0, Math.min(maxHealth, currentHealth + change));
         healthBar.updateHealth(change);
+    
+        if (currentHealth == 0 && !isDead) {
+            isDead = true;
+            Greenfoot.setWorld(new EndScreen()); // Switch to EndScreen
+        }
     }
 
     public void setHealth(int value) {
@@ -211,5 +217,9 @@ public class Gorilla extends Actor {
     
     public boolean isPunching() {
         return punching;
+    }
+    
+    public static void resetInstance() {
+        instance = null;
     }
 }

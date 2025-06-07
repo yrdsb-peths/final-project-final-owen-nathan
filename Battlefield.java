@@ -10,22 +10,24 @@ public class Battlefield extends World {
     public boolean ready = false; 
     boolean waveAnnounced = false;
     boolean coinsGiven = false;
-
-    private static Battlefield instance_;
-    
+   
     Label start = new Label("Press enter to face enemies", 30);
-    
+    private static Battlefield instance_;
+
     public static Battlefield _instance() {
-        if(instance_ == null) {
+        if (instance_ == null) {
             instance_ = new Battlefield();
         }
         return instance_;
     }
+
+    public static void resetInstance() {
+        instance_ = null;
+    }
     
-    private Battlefield() {
+    public Battlefield() {
         super(600, 400, 1);
-        ScoreKeeper.score = 1;
-        
+        instance_ = this;  // Assign the newly created instance to static variable
         GreenfootImage worldBG = new GreenfootImage("images/dgggoyk-fdd28b15-79e9-4a3d-a8bd-d7d966e77900.jpg");
         worldBG.scale(600, 400);
         setBackground(worldBG);
@@ -68,6 +70,9 @@ public class Battlefield extends World {
     }
     
     public void act() {
+        if (Greenfoot.isKeyDown("r")) {
+            Greenfoot.setWorld(new EndScreen());
+        }
         scoreLabel.setValue(ScoreKeeper.score);
         coinLabel.setValue("" + Currency.getCoins()); // also fix: use setValue(String)
         fireLabel.setValue("" + FireCounter.getTraps());
