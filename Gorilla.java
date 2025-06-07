@@ -130,7 +130,7 @@ public class Gorilla extends Actor {
     public void handleShopAndWorldLogic() {
         World world = getWorld();
 
-        if ((world instanceof Battlefield || world instanceof Tutorial) && getX() <= 0 && getY() <= 80) {
+        if ((world instanceof Battlefield || world instanceof Tutorial) && Battlefield.waveStarted == false && getX() <= 0 && getY() <= 80) {
             Shop shop = Shop.instance();
             shop.setPreviousWorld(world);
             Greenfoot.setWorld(shop);

@@ -5,12 +5,14 @@ public class Battlefield extends World {
     Label waveLabel;
     Label coinLabel;
     Label fireLabel;
+    Cart cart = new Cart();
     
     int waveNumber = 1;
     public boolean ready = false; 
     boolean waveAnnounced = false;
     boolean coinsGiven = false;
-
+    public static boolean waveStarted = false;
+    
     private static Battlefield instance_;
     
     Label start = new Label("Press enter to face enemies", 30);
@@ -30,7 +32,6 @@ public class Battlefield extends World {
         worldBG.scale(600, 400);
         setBackground(worldBG);
         
-        Cart cart = new Cart();
         addObject(cart, 25, 40);
 
         addObject(Gorilla.getInstance(), 50, 50);
@@ -42,7 +43,7 @@ public class Battlefield extends World {
         addObject(coinLabel, 50, 360);
         
         Coin coin = new Coin();
-        addObject(coin, 20, 362);
+        addObject(coin, 15, 362);
         
         FireCount fire = new FireCount();
         addObject(fire, 90, 360);
@@ -58,12 +59,11 @@ public class Battlefield extends World {
     public void prepare() {
         Gorilla gorilla = Gorilla.getInstance();
 
-        // Remove Gorilla from other world if needed
         if (gorilla.getWorld() != null) {
             gorilla.getWorld().removeObject(gorilla);
         }
 
-        addObject(gorilla, 50, 50);  // or wherever you want
+        addObject(gorilla, 50, 50);
         gorilla.updateHealthBarPosition();
     }
     
@@ -85,8 +85,10 @@ public class Battlefield extends World {
     
         if (!ready && waveAnnounced && Greenfoot.isKeyDown("enter")) {
             if (waveLabel != null) {
+                waveStarted = true;
                 removeObject(waveLabel);
                 removeObject(start);
+                removeObject(cart);
             }
             startWave(waveNumber);
             ready = true;
@@ -117,6 +119,9 @@ public class Battlefield extends World {
             case 2: wave2(); break;
             case 3: wave3(); break;
             case 4: wave4(); break;
+            case 5: wave5(); break;
+            case 6: wave6(); break;
+            case 7: wave7(); break;
             default: break;
         }
     }
@@ -213,6 +218,50 @@ public class Battlefield extends World {
         world.addObject(new DelayedSpawner(1340, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
     }
     
+    public void wave7() {
+        Battlefield world = this;
+        //total enemies: 75
+        world.addObject(new DelayedSpawner(0, 500, 50), 0, 0);
+        world.addObject(new DelayedSpawner(0, 500, 125), 0, 0);
+        world.addObject(new DelayedSpawner(0, 500, 200), 0, 0);
+        world.addObject(new DelayedSpawner(0, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner(0, 500, 350), 0, 0);
+        
+        world.addObject(new DelayedSpawner(60, 500, 50), 0, 0);
+        world.addObject(new DelayedSpawner(60, 500, 125), 0, 0);
+        world.addObject(new DelayedSpawner(60, 500, 200), 0, 0);
+        world.addObject(new DelayedSpawner(60, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner(60, 500, 350), 0, 0);
+        
+        world.addObject(new DelayedSpawner2(120, 500, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(120, 500, 125), 0, 0);
+        world.addObject(new DelayedSpawner2(120, 500, 200), 0, 0);
+        world.addObject(new DelayedSpawner2(120, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner2(120, 500, 350), 0, 0);
+    }
+    
+    public void wave8() {
+        Battlefield world = this;
+        //total enemies: 90
+        world.addObject(new DelayedSpawner2(0, 500, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(0, 500, 125), 0, 0);
+        world.addObject(new DelayedSpawner2(0, 500, 200), 0, 0);
+        world.addObject(new DelayedSpawner2(0, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner2(0, 500, 350), 0, 0);
+        
+        world.addObject(new DelayedSpawner2(60, 500, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(60, 500, 125), 0, 0);
+        world.addObject(new DelayedSpawner2(60, 500, 200), 0, 0);
+        world.addObject(new DelayedSpawner2(60, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner2(60, 500, 350), 0, 0);
+        
+        world.addObject(new DelayedSpawner2(120, 500, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(120, 500, 125), 0, 0);
+        world.addObject(new DelayedSpawner2(120, 500, 200), 0, 0);
+        world.addObject(new DelayedSpawner2(120, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner2(120, 500, 350), 0, 0);
+    }
+    
     public boolean waveCleared() {
         if (waveNumber == 1) return ScoreKeeper.score >= 6;
         if (waveNumber == 2) return ScoreKeeper.score >= 12;
@@ -220,6 +269,8 @@ public class Battlefield extends World {
         if (waveNumber == 4) return ScoreKeeper.score >= 30;
         if (waveNumber == 5) return ScoreKeeper.score >= 35;
         if (waveNumber == 6) return ScoreKeeper.score >= 60;
+        if (waveNumber == 7) return ScoreKeeper.score >= 75;
+        if (waveNumber == 8) return ScoreKeeper.score >= 90;
         return false;
     }
 
@@ -229,7 +280,9 @@ public class Battlefield extends World {
         if (wave == 3) Currency.addCoins(20);//total coins: 60
         if (wave == 4) Currency.addCoins(30);
         if (wave == 5) Currency.addCoins(40);//total coins: 130
-        if (wave == 6) Currency.addCoins(100);
+        if (wave == 6) Currency.addCoins(60);
+        if (wave == 7) Currency.addCoins(80);
+        if (wave == 8) Currency.addCoins(100);//total coins: 370
     }
 
     
@@ -237,6 +290,8 @@ public class Battlefield extends World {
         waveLabel = new Label("Wave " + waveNumber, 60);
         addObject(waveLabel, getWidth() / 2, getHeight() / 2);
         addObject(start, 300, 250);
+        addObject(cart, 25, 40);
+        waveStarted = false;
     }
 
     public void increaseScore() {
