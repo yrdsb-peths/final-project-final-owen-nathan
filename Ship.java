@@ -2,10 +2,16 @@ import greenfoot.*;
 
 public class Ship extends Actor {
     public static int x = 0;
+    GreenfootSound fallingSound = new GreenfootSound("bomb-dropping-101151.mp3");
+    private static boolean played = false;
     
     public void act() {
         setLocation(getX(), getY() + 2);
-
+        if(played == false) {
+            fallingSound.play();
+            played = true;
+        }
+        
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
             move(-2);
         } else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
@@ -14,9 +20,6 @@ public class Ship extends Actor {
 
         if(getWorld() instanceof Cutscene1 && getY() >= 399) {
             x = getX(); 
-            GreenfootImage invisible = new GreenfootImage(60, 60);
-            invisible.clear();
-            setImage(invisible);
             Greenfoot.setWorld(new Tutorial());
             return;
         }

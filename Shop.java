@@ -61,7 +61,7 @@ public class Shop extends World {
         fireLabel = new Label2("" + FireCounter.getTraps(), 40);
         addObject(fireLabel, 120, 360);
         
-        addObject(new Coin(), 20, 362);
+        addObject(new Coin(), 15, 362);
         addObject(new Coin(), 132, 72);
         addObject(new Coin(), 332, 72);
         addObject(new Coin(), 555, 72);

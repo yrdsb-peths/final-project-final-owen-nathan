@@ -7,6 +7,8 @@ public class Human1 extends Actor {
     GreenfootImage[] punchAnimFlipped = new GreenfootImage[4];
     GreenfootImage[] deathAnim = new GreenfootImage[5];
     GreenfootImage[] deathAnimFlipped = new GreenfootImage[5];
+    private boolean played = false;
+    GreenfootSound deathSound = new GreenfootSound("male-death-sound-128357.mp3");
 
     SimpleTimer animationTimer = new SimpleTimer();
     int frame = 0;
@@ -163,7 +165,10 @@ public class Human1 extends Actor {
 
     private void playDeathAnimation() {
         if (deathFinished) return;
-
+        if(played == false) {
+            deathSound.play();
+            played = true;
+        }
         int delay = 150;
         if (animationTimer.millisElapsed() < delay) return;
         animationTimer.mark();
