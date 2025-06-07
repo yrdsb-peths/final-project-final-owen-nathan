@@ -6,6 +6,16 @@ public class Gorilla extends Actor {
     GreenfootImage[] punchRight = new GreenfootImage[3];
     GreenfootImage[] punchLeft = new GreenfootImage[3];
 
+    GreenfootSound moneySound = new GreenfootSound("cashier-quotka-chingquot-sound-effect-129698.mp3");
+    GreenfootSound punchSound = new GreenfootSound("punch-2-37333.mp3");
+    GreenfootSound elephantSound = new GreenfootSound("elephant-trumpets-growls-6047.mp3");
+    GreenfootSound healSound = new GreenfootSound("084373_heal-36672.mp3");
+    GreenfootSound fireSound = new GreenfootSound("fast-whoosh-118248.mp3");
+    GreenfootSound battleSound = new GreenfootSound("battle_horn_1-6931.mp3");
+    GreenfootSound deathSound = new GreenfootSound("zombie-3-106344.mp3");
+    GreenfootSound firePlaceSound = new GreenfootSound("lighter-click-fire-woosh-326482.mp3");
+    GreenfootImage grave = new GreenfootImage("images/Zombie_Grave-removebg-preview.png");
+        
     String facing = "right";
     SimpleTimer animationTimer = new SimpleTimer();
     boolean punching = false;
@@ -21,6 +31,9 @@ public class Gorilla extends Actor {
 
     private Elephant pet;
     private boolean hasPet = false;
+
+    private boolean isDead = false;
+    private boolean deathSoundPlayed = false;
 
     public static Gorilla getInstance() {
         if (instance == null) {
@@ -54,6 +67,22 @@ public class Gorilla extends Actor {
     }
 
     public void act() {
+        if (isDead) {
+        if (!deathSoundPlayed) {
+            deathSound.play();
+            deathSoundPlayed = true;
+        }
+        if (getWorld() != null && getWorld().getObjects(HealthBar.class).contains(healthBar)) {
+            getWorld().removeObject(healthBar);
+            getWorld().removeObjects(getWorld().getObjects(Human1.class));
+            getWorld().removeObjects(getWorld().getObjects(Human2.class));
+        }
+        grave.scale(60, 60);
+        setImage(grave);
+        return;
+    }
+
+
         if (getWorld() != null && !getWorld().getObjects(HealthBar.class).contains(healthBar)) {
             getWorld().addObject(healthBar, getX(), getY() - 50);
         }
@@ -73,6 +102,7 @@ public class Gorilla extends Actor {
         boolean spaceDown = Greenfoot.isKeyDown("space");
 
         if (spaceDown && !spacePressedLastFrame && !punching) {
+            punchSound.play();
             punching = true;
             imageIndex = 0;
             animationTimer.mark();
@@ -154,6 +184,8 @@ public class Gorilla extends Actor {
         if (world instanceof Shop) {
             if (Greenfoot.isKeyDown("h")) {
                 if (!hPressed && Currency.coins >= 10) {
+                    moneySound.play();
+                    healSound.play();
                     Currency.coins -= 10;
                     setHealth(maxHealth);
                     hPressed = true;
@@ -164,6 +196,8 @@ public class Gorilla extends Actor {
 
             if (Greenfoot.isKeyDown("p")) {
                 if (Currency.coins >= 50 && !hasPet) {
+                    moneySound.play();
+                    elephantSound.play();
                     Currency.coins -= 50;
                     givePet();
                     hasPet = true;
@@ -172,6 +206,8 @@ public class Gorilla extends Actor {
 
             if (Greenfoot.isKeyDown("f")) {
                 if (!fPressed && Currency.coins >= 20) {
+                    moneySound.play();
+                    fireSound.play();
                     Currency.coins -= 20;
                     FireCounter.fireTraps++;
                     fPressed = true;
@@ -184,12 +220,17 @@ public class Gorilla extends Actor {
         if (world instanceof Battlefield) {
             if (Greenfoot.isKeyDown("f")) {
                 if (!fPressed && FireCounter.fireTraps > 0) {
+                    firePlaceSound.play();
                     placeTrap();
                     FireCounter.fireTraps--;
                     fPressed = true;
                 }
             } else {
                 fPressed = false;
+            }
+            
+            if (Greenfoot.isKeyDown("p") && hasPet == true) {
+                elephantSound.play();
             }
         }
 
@@ -198,7 +239,23 @@ public class Gorilla extends Actor {
     public void updateHealth(int change) {
         currentHealth = Math.max(0, Math.min(maxHealth, currentHealth + change));
         healthBar.updateHealth(change);
+    
+        if (currentHealth <= 0 && !isDead) {
+            die();
+        }
     }
+
+    public void die() {
+        isDead = true;
+        punching = false;
+        imageIndex = 0;
+    
+        if (getWorld() != null) {
+            // Optional: stop the game, show message, remove Gorilla, etc.
+            // Greenfoot.stop();  // Pause the game
+        }
+    }
+
 
     public void setHealth(int value) {
         currentHealth = value;

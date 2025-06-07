@@ -6,6 +6,7 @@ public class Battlefield extends World {
     Label coinLabel;
     Label fireLabel;
     Cart cart = new Cart();
+    GreenfootSound startSound = new GreenfootSound("battle_horn_1-6931.mp3");
     
     int waveNumber = 1;
     public boolean ready = false; 
@@ -91,6 +92,7 @@ public class Battlefield extends World {
 
         if (!ready && waveAnnounced && Greenfoot.isKeyDown("enter")) {
             if (waveLabel != null) {
+                startSound.play();
                 waveStarted = true;
                 removeObject(waveLabel);
                 removeObject(start);
