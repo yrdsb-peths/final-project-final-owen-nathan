@@ -181,10 +181,18 @@ public class Gorilla extends Actor {
             }
         }
 
-        if (world instanceof Battlefield && Greenfoot.isKeyDown("f") && FireCounter.fireTraps > 0) {
-            placeTrap();
-            FireCounter.fireTraps--;
+        if (world instanceof Battlefield) {
+            if (Greenfoot.isKeyDown("f")) {
+                if (!fPressed && FireCounter.fireTraps > 0) {
+                    placeTrap();
+                    FireCounter.fireTraps--;
+                    fPressed = true;
+                }
+            } else {
+                fPressed = false;
+            }
         }
+
     }
 
     public void updateHealth(int change) {
