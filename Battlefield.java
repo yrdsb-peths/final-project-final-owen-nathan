@@ -129,8 +129,10 @@ public class Battlefield extends World {
         // Start final wave when enter pressed
         if (!ready && finalWave && waveAnnounced && !waveInProgress && Greenfoot.isKeyDown("enter")) {
             if (finalLabel != null && finalLabel.getWorld() != null) {
+                removeObjects(getObjects(Trap.class));
                 finalSound.play();
                 waveStarted = true;
+
                 removeObject(finalLabel);
                 finalLabel = null;
                 removeObject(start);
@@ -352,9 +354,9 @@ public class Battlefield extends World {
         if (wave == 3) Currency.addCoins(20);
         if (wave == 4) Currency.addCoins(30);
         if (wave == 5) Currency.addCoins(40);
-        if (wave == 6) Currency.addCoins(60);
-        if (wave == 7) Currency.addCoins(80);
-        if (wave == 8) Currency.addCoins(100);//total coins 360
+        if (wave == 6) Currency.addCoins(20);
+        if (wave == 7) Currency.addCoins(50);
+        if (wave == 8) Currency.addCoins(60);//total coins 250
     }
 
     public void announceWave2() {

@@ -30,6 +30,9 @@ public class Gorilla extends Actor {
     private boolean hPressed = false;
     private boolean fPressed = false;
     public static boolean isDead = false;
+    private int cooldownTimer = 0;
+    private boolean onCooldown = false;
+    private boolean pPressedLastFrame = false;
 
     public static boolean dead = false;
     
@@ -71,20 +74,26 @@ public class Gorilla extends Actor {
 
     public void act() {
         if (isDead) {
-        if (!deathSoundPlayed) {
-            deathSound.play();
-            deathSoundPlayed = true;
+            if (!deathSoundPlayed) {
+                deathSound.play();
+                deathSoundPlayed = true;
+            }
+            if (getWorld() != null && getWorld().getObjects(HealthBar.class).contains(healthBar)) {
+                getWorld().removeObject(healthBar);
+                getWorld().removeObjects(getWorld().getObjects(Human1.class));
+                getWorld().removeObjects(getWorld().getObjects(Human2.class));
+            }
+            grave.scale(60, 60);
+            setImage(grave);
+            return;
         }
-        if (getWorld() != null && getWorld().getObjects(HealthBar.class).contains(healthBar)) {
-            getWorld().removeObject(healthBar);
-            getWorld().removeObjects(getWorld().getObjects(Human1.class));
-            getWorld().removeObjects(getWorld().getObjects(Human2.class));
-        }
-        grave.scale(60, 60);
-        setImage(grave);
-        return;
-    }
 
+        if (onCooldown) {
+            cooldownTimer--;
+            if (cooldownTimer <= 0) {
+                onCooldown = false;
+            }
+        }
 
         if (getWorld() != null && !getWorld().getObjects(HealthBar.class).contains(healthBar)) {
             getWorld().addObject(healthBar, getX(), getY() - 50);
@@ -162,7 +171,7 @@ public class Gorilla extends Actor {
 
     public void handleShopAndWorldLogic() {
         World world = getWorld();
-
+        
         if ((world instanceof Battlefield || world instanceof Tutorial) && Battlefield.waveStarted == false && getX() <= 0 && getY() <= 80) {
             Shop shop = Shop.instance();
             shop.setPreviousWorld(world);
@@ -198,10 +207,10 @@ public class Gorilla extends Actor {
             }
 
             if (Greenfoot.isKeyDown("p")) {
-                if (Currency.coins >= 50 && !hasPet) {
+                if (Currency.coins >= 90 && !hasPet) {
                     moneySound.play();
                     elephantSound.play();
-                    Currency.coins -= 50;
+                    Currency.coins -= 90;
                     givePet();
                     hasPet = true;
                 }
@@ -221,6 +230,18 @@ public class Gorilla extends Actor {
         }
 
         if (world instanceof Battlefield) {
+            if (Greenfoot.isKeyDown("p")) {
+                if (!pPressedLastFrame && !onCooldown && Battlefield.waveStarted && hasPet) {
+                    placeTrap();
+                    onCooldown = true;
+                    cooldownTimer = 300;
+                    elephantSound.play();
+                }
+                pPressedLastFrame = true;
+            } else {
+                pPressedLastFrame = false;
+            }
+        
             if (Greenfoot.isKeyDown("f")) {
                 if (!fPressed && FireCounter.fireTraps > 0) {
                     firePlaceSound.play();
@@ -231,14 +252,9 @@ public class Gorilla extends Actor {
             } else {
                 fPressed = false;
             }
-            
-            if (Greenfoot.isKeyDown("p") && hasPet == true) {
-                elephantSound.play();
-            }
         }
-
     }
-
+    
     public void updateHealth(int change) {
         currentHealth = Math.max(0, Math.min(maxHealth, currentHealth + change));
         healthBar.updateHealth(change);
@@ -246,7 +262,6 @@ public class Gorilla extends Actor {
         if (currentHealth <= 0 && !isDead) {
             die();
             dead = true;
-            //Greenfoot.setWorld(new EndScreen());
         }
     }
 

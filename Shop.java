@@ -6,11 +6,11 @@ public class Shop extends World {
     Label2 fireLabel;
     Label2 coinLabel;
     Label2 HP = new Label2("HP\u219210", 25);
-    Label2 PET = new Label2("PET\u219250", 25);
-    Label2 FIRE = new Label2("Fire Trap\u219220", 25);
+    Label2 PET = new Label2("PET\u219290", 25);
+    Label2 FIRE = new Label2("Fire Trap\u219230", 25);
     Label2 descriptionHP = new Label2("Restores full vitality", 20);
-    Label2 descriptionPET = new Label2("Doesn't do much,", 20);
-    Label2 descriptionPET2 = new Label2("just here for the ride", 20);
+    Label2 descriptionPET = new Label2("Press P on", 20);
+    Label2 descriptionPET2 = new Label2("battlefield and may help...", 20);
     Label2 descriptionFIRE = new Label2("Trap to damage enemies", 20);
     Label2 buyH = new Label2("Press H to Buy", 25);
     Label2 buyP = new Label2("Press P to Buy", 25);
