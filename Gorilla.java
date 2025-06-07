@@ -29,6 +29,7 @@ public class Gorilla extends Actor {
     private static Gorilla instance;
     private boolean hPressed = false;
     private boolean fPressed = false;
+    private boolean isDead = false;
 
     private Elephant pet;
     private boolean hasPet = false;
@@ -242,7 +243,8 @@ public class Gorilla extends Actor {
         healthBar.updateHealth(change);
     
         if (currentHealth <= 0 && !isDead) {
-            die();
+            //die();
+          Greenfoot.setWorld(new EndScreen());
         }
     }
 
@@ -299,5 +301,10 @@ public class Gorilla extends Actor {
 
     public boolean isPunching() {
         return punching;
+    }
+}
+    
+    public static void resetInstance() {
+        instance = null;
     }
 }
