@@ -9,7 +9,9 @@ public class Human2 extends Actor {
     GreenfootImage[] deathAnimFlipped = new GreenfootImage[5];
     GreenfootImage[] hurtAnim = new GreenfootImage[4];
     GreenfootImage[] hurtAnimFlipped = new GreenfootImage[4];
-
+    private boolean played = false;
+    GreenfootSound deathSound = new GreenfootSound("dramatic-death-collapse-352720.mp3");
+    
     SimpleTimer animationTimer = new SimpleTimer();
 
     int frame = 0;
@@ -124,6 +126,11 @@ public class Human2 extends Actor {
 
 
     private void playDeathAnimation() {
+        if(played == false) {
+            deathSound.play();
+            played = true;
+        }
+
         if (!deathFinished && animationTimer.millisElapsed() > 200) {
             if (facingRight) {
                 setImage(deathAnim[frame]);
