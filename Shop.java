@@ -11,7 +11,8 @@ public class Shop extends World {
     Label2 descriptionHP = new Label2("Restores full vitality", 20);
     Label2 descriptionPET = new Label2("Press P on", 20);
     Label2 descriptionPET2 = new Label2("battlefield and may help...", 20);
-    Label2 descriptionFIRE = new Label2("Trap to damage enemies", 20);
+    Label2 descriptionFIRE = new Label2("Trap to damage tier 1s", 20);
+    Label2 descriptionFIRE2 = new Label2("F to deploy", 20);
     Label2 buyH = new Label2("Press H to Buy", 25);
     Label2 buyP = new Label2("Press P to Buy", 25);
     Label2 buyF = new Label2("Press F to Buy", 25);
@@ -77,7 +78,8 @@ public class Shop extends World {
         Fire fire = new Fire();
         addObject(fire, 495, 135);
         addObject(FIRE, 485, 70);
-        addObject(descriptionFIRE, 495, 260);
+        addObject(descriptionFIRE, 495, 258);
+        addObject(descriptionFIRE2, 495, 273);
         addObject(buyF, 495, 205);
 
         Pet pet = new Pet();
