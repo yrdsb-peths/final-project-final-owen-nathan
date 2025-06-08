@@ -18,7 +18,7 @@ public class FinalBoss extends Actor {
     private int verticalDirection = 1;
     private int speed = 3;
     private int changeDirectionCooldown = 0;
-    int health = 1;
+    int health = 10;
     int frame = 0;
     boolean scoreGiven = false;
     boolean facingRight = true;
