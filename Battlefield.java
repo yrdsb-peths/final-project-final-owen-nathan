@@ -26,8 +26,9 @@ public class Battlefield extends World {
     Label start = new Label("Press enter to face enemies", 30);
     TimedLabel deadLabel = new TimedLabel("Gorilla has Fallen!", 60, 120);
     TimedLabel newStart = new TimedLabel("Press R to Restart", 30, 120);
-    
+    private boolean isWinning = false;
     private Gorilla gorilla;
+    SimpleTimer timer = new SimpleTimer();
     
     public static Battlefield _instance() {
         if(instance_ == null) {
@@ -376,8 +377,13 @@ public class Battlefield extends World {
         waveStarted = false;
     }
     
-    public void win(){
-        if (ScoreKeeper.score == 100){
+    public void win() {
+        if (!isWinning && ScoreKeeper.score == 100) {
+            isWinning = true;
+            timer.mark(); // Start the delay
+        }
+    
+        if (isWinning && timer.millisElapsed() >= 2500) {
             Greenfoot.setWorld(new WinScreen());
         }
     }
