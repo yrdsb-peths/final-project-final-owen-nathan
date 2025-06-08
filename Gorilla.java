@@ -120,7 +120,7 @@ public class Gorilla extends Actor {
             animationTimer.mark();
 
             int xOffset = facing.equals("right") ? 50 : -50;
-            PunchHitbox hitbox = new PunchHitbox();
+            PunchHitbox hitbox = new PunchHitbox(this);
             getWorld().addObject(hitbox, getX() + xOffset, getY());
         }
 
@@ -217,10 +217,10 @@ public class Gorilla extends Actor {
             }
 
             if (Greenfoot.isKeyDown("f")) {
-                if (!fPressed && Currency.coins >= 20) {
+                if (!fPressed && Currency.coins >= 30) {
                     moneySound.play();
                     fireSound.play();
-                    Currency.coins -= 20;
+                    Currency.coins -= 30;
                     FireCounter.fireTraps++;
                     fPressed = true;
                 }
@@ -316,5 +316,28 @@ public class Gorilla extends Actor {
     
     public static void resetInstance() {
         instance = null;
+    }
+    
+    public void knockBack(int strength) {
+        // Example: push Gorilla back along X axis by 'strength' pixels
+        // Adjust direction as needed depending on your game logic
+        int newX = getX() - strength; 
+        setLocation(newX, getY());
+    }
+    
+    public String getFacing() {
+        return facing;
+    }
+
+    public void setFacing(String direction) {
+        facing = direction;
+    }
+
+    public void applyKnockback(int dx, int dy) {
+        setLocation(getX() + dx, getY() + dy);
+    }
+
+    public void setPunching(boolean punching) {
+        this.punching = punching;
     }
 }

@@ -70,11 +70,7 @@ public class Human2 extends Actor {
             playDeathAnimation();
             if (!scoreGiven) {
                 World world = getWorld();
-                if (world instanceof Tutorial) {
-                    ((Tutorial) world).increaseScore();
-                } else if (world instanceof Battlefield) {
-                    ((Battlefield) world).increaseScore();
-                }
+                ((Battlefield) world).increaseScore();
                 scoreGiven = true;
             }
         }
