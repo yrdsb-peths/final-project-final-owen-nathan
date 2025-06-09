@@ -112,6 +112,7 @@ public class Battlefield extends World {
             Greenfoot.setWorld(bf);
         }
         // Announce final wave only if not announced and no wave in progress
+        
         if (finalWave && !waveAnnounced && !waveInProgress) {
             announceWave2();
             waveAnnounced = true;
@@ -127,6 +128,7 @@ public class Battlefield extends World {
             announceWave();
             waveAnnounced = true;
         }
+        
     
         // Start final wave when enter pressed
         if (!ready && finalWave && waveAnnounced && !waveInProgress && Greenfoot.isKeyDown("enter")) {
@@ -167,9 +169,9 @@ public class Battlefield extends World {
             waveInProgress = false;
         }
         
-        //if (Greenfoot.isKeyDown("r")) {
-            //Greenfoot.setWorld(new EndScreen());
-        //}
+        if (Greenfoot.isKeyDown("r")) {
+            Greenfoot.setWorld(new WinScreen());
+        }
     }
 
     public Gorilla getGorilla() {
@@ -372,20 +374,23 @@ public class Battlefield extends World {
     }
     
     public void announceWave() {
-        waveLabel = new Label("Wave " + waveNumber, 60);
-        addObject(waveLabel, getWidth() / 2, getHeight() / 2);
-        addObject(start, 300, 250);
-        addObject(cart, 25, 40);
-        waveStarted = false;
+        if (waveNumber <= 9){
+            waveLabel = new Label("Wave " + waveNumber, 60);
+            addObject(waveLabel, getWidth() / 2, getHeight() / 2);
+            addObject(start, 300, 250);
+            addObject(cart, 25, 40);
+            waveStarted = false;
+        }
     }
     
     public void win() {
         if (!isWinning && ScoreKeeper.score == 100) {
             isWinning = true;
+            finalWave = false;
             timer.mark(); // Start the delay
         }
     
-        if (isWinning && timer.millisElapsed() >= 2500) {
+        if (isWinning && timer.millisElapsed() >=2000) {
             Greenfoot.setWorld(new WinScreen());
         }
     }
