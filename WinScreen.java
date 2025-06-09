@@ -1,7 +1,8 @@
 import greenfoot.*;
 
 public class WinScreen extends World {
-
+    GreenfootSound fallingSound = new GreenfootSound("level-win-6416.mp3");
+    public static boolean played2 = false;
     public WinScreen() {
         super(600, 400, 1);
         GreenfootImage bg = getBackground();
@@ -16,12 +17,18 @@ public class WinScreen extends World {
     }
 
     public void act() {
+        if(played2 == false) {
+            fallingSound.play();
+            played2 = true;
+        }
+        
         if (Greenfoot.isKeyDown("r")) {
             Gorilla.resetInstance();
             Battlefield.resetInstance();
             Currency.coins = 0;
             FireCounter.fireTraps = 0;
             ScoreKeeper.score = 1;
+            played2 = false;
 
             Battlefield battlefield = Battlefield._instance();
 
