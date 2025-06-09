@@ -10,6 +10,10 @@ public class FinalBoss extends Actor {
     GreenfootImage[] deathAnimFlipped = new GreenfootImage[5];
     GreenfootImage[] hurtAnim = new GreenfootImage[5];
     GreenfootImage[] hurtAnimFlipped = new GreenfootImage[5];
+    
+    GreenfootSound shootSound = new GreenfootSound("laser-bolt-89300.mp3");
+    GreenfootSound deathSound = new GreenfootSound("086398_game-die-81356.mp3");
+    GreenfootSound hurtSound = new GreenfootSound("droping-a-metal-pipe-278451.mp3");
 
     SimpleTimer animationTimer = new SimpleTimer();
     SimpleTimer shootTimer = new SimpleTimer();
@@ -140,7 +144,7 @@ public class FinalBoss extends Actor {
     private void shootBeamIfReady() {
         int shootDelay = 400; // milliseconds between shots
         if (shootTimer.millisElapsed() < shootDelay) return;
-
+        shootSound.play();
         shootTimer.mark();
 
         // Spawn a beam
@@ -157,7 +161,8 @@ public class FinalBoss extends Actor {
     public void takeDamage() {
         if (isDead || isHurt) return;
 
-        health --;;
+        health --;
+        hurtSound.play();
         if (health <= 0) {
             isDead = true;
             frame = 0;
@@ -190,6 +195,7 @@ public class FinalBoss extends Actor {
 
     private void playDeathAnimation() {
         int deathDelay = 150;
+        deathSound.play();
         if (animationTimer.millisElapsed() < deathDelay) return;
         animationTimer.mark();
 

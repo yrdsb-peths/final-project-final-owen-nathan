@@ -168,10 +168,6 @@ public class Battlefield extends World {
         if (waveInProgress && waveCleared()) {
             waveInProgress = false;
         }
-        
-        if (Greenfoot.isKeyDown("r")) {
-            Greenfoot.setWorld(new WinScreen());
-        }
     }
 
     public Gorilla getGorilla() {

@@ -208,10 +208,10 @@ public class Gorilla extends Actor {
             }
 
             if (Greenfoot.isKeyDown("p")) {
-                if (Currency.coins >= 50 && !hasPet) {
+                if (Currency.coins >= 40 && !hasPet) {
                     moneySound.play();
                     elephantSound.play();
-                    Currency.coins -= 50;
+                    Currency.coins -= 40;
                     givePet();
                     hasPet = true;
                 }
