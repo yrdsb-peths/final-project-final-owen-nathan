@@ -36,7 +36,7 @@ public class Tutorial extends World {
         addObject(text, 300, 60);
 
         switchLabel(text);
-
+        
         Ship asteroid = new Ship();
         addObject(asteroid, Ship.x, 0);
         addObject(wasdLabel, 300, 300);

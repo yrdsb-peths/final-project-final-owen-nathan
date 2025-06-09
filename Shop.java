@@ -6,7 +6,7 @@ public class Shop extends World {
     Label2 fireLabel;
     Label2 coinLabel;
     Label2 HP = new Label2("HP\u219210", 25);
-    Label2 PET = new Label2("PET\u219290", 25);
+    Label2 PET = new Label2("PET\u219250", 25);
     Label2 FIRE = new Label2("Fire Trap\u219230", 25);
     Label2 descriptionHP = new Label2("Restores full vitality", 20);
     Label2 descriptionPET = new Label2("Press P on", 20);

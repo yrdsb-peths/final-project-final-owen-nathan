@@ -24,7 +24,7 @@ public class Gorilla extends Actor {
     int imageIndex = 0;
     int speed = 4;
     private HealthBar healthBar;
-    private int currentHealth;
+    public static int currentHealth;
     private int maxHealth = 100;
     private static Gorilla instance;
     private boolean hPressed = false;
@@ -33,6 +33,7 @@ public class Gorilla extends Actor {
     private int cooldownTimer = 0;
     private boolean onCooldown = false;
     private boolean pPressedLastFrame = false;
+    public static boolean isTouchingBomb = false;
 
     public static boolean dead = false;
     
@@ -207,10 +208,10 @@ public class Gorilla extends Actor {
             }
 
             if (Greenfoot.isKeyDown("p")) {
-                if (Currency.coins >= 90 && !hasPet) {
+                if (Currency.coins >= 50 && !hasPet) {
                     moneySound.play();
                     elephantSound.play();
-                    Currency.coins -= 90;
+                    Currency.coins -= 50;
                     givePet();
                     hasPet = true;
                 }

@@ -15,10 +15,12 @@ public class Battlefield extends World {
     public boolean ready = false; 
     boolean waveAnnounced = false;
     boolean coinsGiven = false;
+    boolean finalBossAlive = true;
     public static boolean waveStarted = false;
     
     public static boolean deadShown = false;
     public static boolean newShown = false;
+    public static boolean bombAlive = false;
     
     private static Battlefield instance_;
     public static boolean finalWave = false;
@@ -165,9 +167,9 @@ public class Battlefield extends World {
             waveInProgress = false;
         }
         
-        if (Greenfoot.isKeyDown("r")) {
-            Greenfoot.setWorld(new EndScreen());
-        }
+        //if (Greenfoot.isKeyDown("r")) {
+            //Greenfoot.setWorld(new EndScreen());
+        //}
     }
 
     public Gorilla getGorilla() {
@@ -401,7 +403,7 @@ public class Battlefield extends World {
     public void spawnFinalBoss() {
         int x = getWidth() - 50; // 50 pixels from the right edge (adjust as needed)
         int y = getHeight() / 2; // vertically centered
-    
+        
         FinalBoss boss = new FinalBoss();
         addObject(boss, x, y);
     }
