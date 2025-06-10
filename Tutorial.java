@@ -8,12 +8,12 @@ public class Tutorial extends World {
     public boolean crossed = false;
     public boolean spawn1 = true;
 
-    Label text = new Label("a gorilla finds himself stranded in a new world...", 32);
+    Label text = new Label("a gorilla finds himself stranded in a new world...", 25);
     Label wasdLabel = new Label("WASD to move", 50); 
     Label text2 = new Label("Press enter to meet friends", 50);
-    Label text3 = new Label("'friends' turn out to be hostile gorilla like beings...", 32);
+    Label text3 = new Label("'friends' turn out to be hostile gorilla like beings...", 25);
     Label text4 = new Label("Press space to attack", 50);
-    Label text5 = new Label("Check out the shop!", 50);
+    Label text5 = new Label("Walk through the icon to check out the shop!", 30);
     Label scoreLabel;
 
     private boolean enterPressed = false;
