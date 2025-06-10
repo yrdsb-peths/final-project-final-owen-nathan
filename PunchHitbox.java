@@ -44,7 +44,7 @@ public class PunchHitbox extends Actor {
         if (boss != null) {
             boss.takeDamage();
 
-            int knockbackAmount = 350; // Adjust this for distance pushed
+            int knockbackAmount = 300; // Adjust this for distance pushed
             if (owner.getFacing().equals("right")) {
                 owner.applyKnockback(-knockbackAmount, 0); // Knockback left
             } else {
