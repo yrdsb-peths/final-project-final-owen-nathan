@@ -1,5 +1,7 @@
 import greenfoot.*;
 
+//This class runs when the player defeats all 100 humans
+
 public class WinScreen extends World {
     GreenfootSound fallingSound = new GreenfootSound("level-win-6416.mp3");
     public static boolean played2 = false;
@@ -9,7 +11,7 @@ public class WinScreen extends World {
         bg.setColor(Color.BLACK);
         bg.fill();
 
-        GreenfootImage text1 = new GreenfootImage("One Gorilla Is Stronger Than 100 Humans!", 35, Color.WHITE, new Color(0,0,0,0));
+        GreenfootImage text1 = new GreenfootImage("One Gorilla Is Stronger Than 100 Humans!", 30, Color.WHITE, new Color(0,0,0,0));
         GreenfootImage text2 = new GreenfootImage("Press R to Restart", 30, Color.WHITE, new Color(0,0,0,0));
         
         bg.drawImage(text1, (getWidth() - text1.getWidth()) / 2, 150);

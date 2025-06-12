@@ -1,6 +1,8 @@
 import greenfoot.*;
 import greenfoot.Color;
 
+//These are the bullets that the final boss shoots
+
 public class Beam extends Actor {
     private int speed = 5;
     private boolean facingRight;

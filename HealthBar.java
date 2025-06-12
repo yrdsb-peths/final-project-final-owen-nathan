@@ -1,5 +1,7 @@
 import greenfoot.*;
 
+//Healthbar that follows the gorilla and keeps track of how much hp the gorilla has
+
 public class HealthBar extends Actor {
     private int maxHealth;
     private int currentHealth;

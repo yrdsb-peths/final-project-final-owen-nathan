@@ -2,6 +2,9 @@ import greenfoot.*;
 import java.util.List;
 import java.util.Random;
 
+//Final boss that shoots bullets and also applys knockback when hit
+//Takes 10 hits to kill the boss
+
 public class FinalBoss extends Actor {
     // Animation arrays
     GreenfootImage[] attackAnim = new GreenfootImage[5];

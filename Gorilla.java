@@ -1,5 +1,7 @@
 import greenfoot.*;
 
+//Main character that the user controls and attacks with
+
 public class Gorilla extends Actor {
     GreenfootImage[] walkRight = new GreenfootImage[3];
     GreenfootImage[] walkLeft = new GreenfootImage[3];

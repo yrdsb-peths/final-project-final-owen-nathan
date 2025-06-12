@@ -3,6 +3,7 @@ import greenfoot.*;
 /**
  * Tutorial world with guided cutscene and events.
  */
+
 public class Tutorial extends World {
     public boolean landed = false;
     public boolean crossed = false;

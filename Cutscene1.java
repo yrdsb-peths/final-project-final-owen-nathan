@@ -1,14 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class Cutscene1 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+// Initial cutscene/animation
+
 public class Cutscene1 extends World
 {
-    Label text = new Label("a crash landing onto an unfamiliar planet...", 32);
+    Label text = new Label("a crash landing onto an unfamiliar planet...", 30);
     /**
      * Constructor for objects of class Cutscene1.
      * 
@@ -21,7 +17,7 @@ public class Cutscene1 extends World
         earth.scale(600, 400);
         setBackground(earth);
         
-        addObject(text, 340, 380);
+        addObject(text, 300, 380);
         
         Ship asteroid = new Ship();
         addObject(asteroid, Greenfoot.getRandomNumber(600), 0);

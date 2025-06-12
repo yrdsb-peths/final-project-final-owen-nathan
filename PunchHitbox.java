@@ -1,5 +1,8 @@
 import greenfoot.*;
 
+//Red square that acts as the hitbox for the gorilla
+//Instead of checking for intersections with the gorilla, it checks for intersections between the gorilla and enemys
+
 public class PunchHitbox extends Actor {
     private int lifespan = 20; // frames to exist before disappearing
     private int age = 0;

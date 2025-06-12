@@ -1,11 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class Pet here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+//Pet Icon
+
 public class Pet extends Actor
 {
     /**

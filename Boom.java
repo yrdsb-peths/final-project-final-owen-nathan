@@ -1,5 +1,7 @@
 import greenfoot.*;
 
+//Explosion at the start of game
+
 public class Boom extends Actor {
     private int frames = 40;
     private int spawnX, spawnY;

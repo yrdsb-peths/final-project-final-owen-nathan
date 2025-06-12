@@ -2,6 +2,9 @@ import greenfoot.*;
 import java.util.List;
 import java.util.Random;
 
+//This is the class for the first and weakest human
+//It will randomly hit as well as follow the gorilla to deal damage
+
 public class Human1 extends Actor {
     GreenfootImage[] punchAnim = new GreenfootImage[4];
     GreenfootImage[] punchAnimFlipped = new GreenfootImage[4];

@@ -2,6 +2,8 @@ import greenfoot.*;
 import java.util.List;
 import java.util.Random;
 
+// This is the second enemy that dies after two hits from the gorilla
+// This enemy moves faster and is stronger than the first
 public class Human2 extends Actor {
     GreenfootImage[] attackAnim = new GreenfootImage[5];
     GreenfootImage[] attackAnimFlipped = new GreenfootImage[5];

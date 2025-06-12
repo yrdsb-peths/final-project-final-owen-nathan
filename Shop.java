@@ -1,5 +1,7 @@
 import greenfoot.*;
 
+// Shop where players buy things
+
 public class Shop extends World {
     private static Shop _instance = null;
     private World prevWorld;

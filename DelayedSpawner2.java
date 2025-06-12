@@ -1,11 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class DelayedSpawner here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+// Delays the spawning of human2
+
 public class DelayedSpawner2 extends Actor {
     private int frames;
     private int x, y;

@@ -1,5 +1,6 @@
 import greenfoot.*;
 
+//Ship that falls in the cutscene
 public class Ship extends Actor {
     public static int x = 0;
     GreenfootSound fallingSound = new GreenfootSound("bomb-dropping-101151.mp3");

@@ -1,5 +1,7 @@
 import greenfoot.*;
 
+// Main battlefield where the waves occur 
+
 public class Battlefield extends World {
     Label scoreLabel;
     Label waveLabel;
@@ -128,7 +130,6 @@ public class Battlefield extends World {
             announceWave();
             waveAnnounced = true;
         }
-        
     
         // Start final wave when enter pressed
         if (!ready && finalWave && waveAnnounced && !waveInProgress && Greenfoot.isKeyDown("enter")) {
@@ -402,8 +403,8 @@ public class Battlefield extends World {
     }
     
     public void spawnFinalBoss() {
-        int x = getWidth() - 50; // 50 pixels from the right edge (adjust as needed)
-        int y = getHeight() / 2; // vertically centered
+        int x = getWidth() - 50;
+        int y = getHeight() / 2;
         
         FinalBoss boss = new FinalBoss();
         addObject(boss, x, y);

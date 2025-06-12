@@ -1,11 +1,6 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;  
+// Titlescreen of the game
 
-/**
- * titlescreen of game
- * 
- * @author Ji 
- * @version 5/20
- */
 public class Titlescreen extends World
 {
     Label titleLabel = new Label("Planet of Men", 80);
