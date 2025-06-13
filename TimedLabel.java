@@ -1,5 +1,7 @@
 import greenfoot.*;
 
+//Timed label that dissapears after a set time
+
 public class TimedLabel extends Actor {
     private int timer; // frames to stay alive
 

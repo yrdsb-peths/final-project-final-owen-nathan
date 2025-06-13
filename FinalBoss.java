@@ -179,7 +179,7 @@ public class FinalBoss extends Actor {
     }
 
     private void playHurtAnimation() {
-        int hurtDelay = 100; // ms per frame / frequency of attack
+        int hurtDelay = 100; // ms per frame 
         if (hurtTimer.millisElapsed() < hurtDelay) return;
         hurtTimer.mark();
 

@@ -1,5 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+// Animation for the fire trap that gets placed down after bought in the shop
+
 public class Trap extends Actor {
     private GreenfootImage[] fireFrames = new GreenfootImage[11];
     private int frame = 0;
