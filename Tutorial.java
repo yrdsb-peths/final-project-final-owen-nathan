@@ -96,11 +96,6 @@ public class Tutorial extends World {
         Human1 h1 = new Human1();
         addObject(h1, x, y);
     }
-    
-    public void spawnHuman2(int x, int y) {
-        Human2 h2 = new Human2();
-        addObject(h2, x, y);
-    }
 
     public boolean checkEnemies() {
         return !getObjects(Human1.class).isEmpty();

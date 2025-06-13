@@ -70,7 +70,8 @@ public class Human1 extends Actor {
             }
         }
     }
-
+    
+    //Move based on gorilla location to chase it down
     private void moveTowardGorilla() {
         World world = getWorld();
         if (world == null) return;
@@ -94,6 +95,7 @@ public class Human1 extends Actor {
         }
     }
 
+    //Code to make the human punch and damage gorilla properly
     private void punchLoop() {
         int delay = 250;
         if (animationTimer.millisElapsed() < delay) return;
@@ -132,10 +134,11 @@ public class Human1 extends Actor {
 
         Gorilla gorilla = gorillas.get(0);
         if (this.intersects(gorilla)) {
-            gorilla.updateHealth(-10);
+            gorilla.updateHealth(-5);
         }
     }
 
+    //Human1 dies when touching a trap
     private void checkTrap() {
         Actor trap = getOneIntersectingObject(Trap.class);
         if(isTouching(Trap.class)) {
@@ -145,6 +148,7 @@ public class Human1 extends Actor {
         }
     }
     
+    //Human1 also dies when touching the gorilla punch hitbox
     private void checkGorillaPunch() {
         World world = getWorld();
         if (world == null) return;

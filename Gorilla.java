@@ -129,7 +129,8 @@ public class Gorilla extends Actor {
 
         spacePressedLastFrame = spaceDown;
     }
-
+    
+    //Animate the gorilla based on which side it faces
     public void animateGorilla() {
         int delay = punching ? 200 : 50;
         if (animationTimer.millisElapsed() < delay) return;
@@ -155,6 +156,7 @@ public class Gorilla extends Actor {
         }
     }
 
+    //Movement keys
     public void handleMovement() {
         if (Greenfoot.isKeyDown("a")) {
             setLocation(getX() - speed, getY());
@@ -278,7 +280,8 @@ public class Gorilla extends Actor {
         currentHealth = value;
         healthBar.setHealth(value);
     }
-
+    
+    //Allows the healthbar to folow the gorilla
     public void updateHealthBarPosition() {
         if (getWorld() != null && healthBar != null) {
             if (!getWorld().getObjects(HealthBar.class).contains(healthBar)) {
@@ -287,7 +290,8 @@ public class Gorilla extends Actor {
             healthBar.setLocation(getX(), getY() - 50);
         }
     }
-
+    
+    //Allows gorilla to place down fire traps
     public void placeTrap() {
         Trap trap = new Trap();
         getWorld().addObject(trap, getX(), getY());
@@ -322,8 +326,7 @@ public class Gorilla extends Actor {
     }
     
     public void knockBack(int strength) {
-        // Example: push Gorilla back along X axis by 'strength' pixels
-        // Adjust direction as needed depending on your game logic
+        //push Gorilla back along X axis by 'strength' pixels
         int newX = getX() - strength; 
         setLocation(newX, getY());
     }

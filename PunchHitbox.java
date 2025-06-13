@@ -7,7 +7,8 @@ public class PunchHitbox extends Actor {
     private int lifespan = 20; // frames to exist before disappearing
     private int age = 0;
     private Gorilla owner;
-
+    //Owner is just used to locate the Gorilla that spawned the hitbox
+    
     public PunchHitbox(Gorilla owner) {
         this.owner = owner;
         GreenfootImage img = new GreenfootImage(25, 25);
@@ -15,7 +16,8 @@ public class PunchHitbox extends Actor {
         img.fill();
         setImage(img);
     }
-
+    
+    //Determines how long the hitbox should last
     public void act() {
         age++;
         if (age >= lifespan) {

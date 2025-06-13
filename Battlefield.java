@@ -200,6 +200,7 @@ public class Battlefield extends World {
         }
     }
     
+    //All the wave methods are just adding in the enemies for that particular wave
      public void wave1() {
         Battlefield world = this;
         //total enemies: 6
@@ -380,6 +381,7 @@ public class Battlefield extends World {
         }
     }
     
+    //Used when the game is over to start the winscreen
     public void win() {
         if (!isWinning && ScoreKeeper.score == 100) {
             isWinning = true;

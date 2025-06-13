@@ -1,11 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Hero: Elephant
- * 
- * @author (nathan) 
- * @version (04/29)
- */
+//Elephant is the pet in the game that moves and follows the gorilla
+
 public class Elephant extends Actor
 {
     GreenfootImage[] idleRight = new GreenfootImage[8];
