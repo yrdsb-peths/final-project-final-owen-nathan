@@ -27,7 +27,7 @@ public class Gorilla extends Actor {
     int speed = 4;
     private HealthBar healthBar;
     public static int currentHealth;
-    private int maxHealth = 100;
+    private int maxHealth = 200;
     private static Gorilla instance;
     private boolean hPressed = false;
     private boolean fPressed = false;
@@ -122,7 +122,7 @@ public class Gorilla extends Actor {
             imageIndex = 0;
             animationTimer.mark();
 
-            int xOffset = facing.equals("right") ? 50 : -50;
+            int xOffset = facing.equals("right") ? 30 : -30;
             PunchHitbox hitbox = new PunchHitbox(this);
             getWorld().addObject(hitbox, getX() + xOffset, getY());
         }

@@ -11,7 +11,7 @@ public class PunchHitbox extends Actor {
     
     public PunchHitbox(Gorilla owner) {
         this.owner = owner;
-        GreenfootImage img = new GreenfootImage(25, 25);
+        GreenfootImage img = new GreenfootImage(40, 30);
         img.setColor(new greenfoot.Color(255, 0, 0, 100)); // translucent red
         img.fill();
         setImage(img);

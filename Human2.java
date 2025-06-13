@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.Random;
 
 // This is the second enemy that dies after two hits from the gorilla
-// This enemy moves faster and is stronger than the first
 // Many methods are reused from Human1 in this class
 public class Human2 extends Actor {
     GreenfootImage[] attackAnim = new GreenfootImage[5];
@@ -29,7 +28,7 @@ public class Human2 extends Actor {
     boolean hasDealtDamageThisPunch = false;
     private boolean wasJustHit = false;
 
-    int speed = 2;
+    int speed = 1;
     int offsetX, offsetY;
 
     public Human2() {
@@ -93,15 +92,17 @@ public class Human2 extends Actor {
         if (Math.abs(dx) > speed) setLocation(getX() + (dx > 0 ? speed : -speed), getY());
         if (Math.abs(dy) > speed) setLocation(getX(), getY() + (dy > 0 ? speed : -speed));
     }
-
-    private void checkGorillaPunch() {
-        Actor gorilla = getOneIntersectingObject(Gorilla.class);
-        if (gorilla != null && ((Gorilla) gorilla).isPunching()) {
-            if (!wasJustHit && !isDead && !isHurt) {
-                takeDamage();  // call takeDamage() instead of decrementing health here
+    
+        private void checkGorillaPunch() {
+        World world = getWorld();
+        if (world == null) return;
+        List<PunchHitbox> hits = world.getObjects(PunchHitbox.class);
+        for (PunchHitbox hitbox : hits) {
+            if (this.intersects(hitbox) && !isDead) {
+                takeDamage();
+                world.removeObject(hitbox);
+                break;
             }
-        } else {
-            wasJustHit = false;
         }
     }
 

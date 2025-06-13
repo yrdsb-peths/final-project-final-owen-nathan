@@ -216,17 +216,17 @@ public class Battlefield extends World {
         Battlefield world = this;    
         //total enemies: 12
         world.addObject(new DelayedSpawner(0, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
-        world.addObject(new DelayedSpawner2(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
         world.addObject(new DelayedSpawner(120, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
-        world.addObject(new DelayedSpawner2(180, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(180, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
         world.addObject(new DelayedSpawner(240, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
-        world.addObject(new DelayedSpawner2(300, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(300, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
     }
     
     public void wave3() {
         Battlefield world = this;
         //total enemies: 20
-        world.addObject(new DelayedSpawner2(0, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
+        world.addObject(new DelayedSpawner(0, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
         world.addObject(new DelayedSpawner(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
         world.addObject(new DelayedSpawner(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
         world.addObject(new DelayedSpawner(60, Greenfoot.getRandomNumber(600), Greenfoot.getRandomNumber(400)), 0, 0);
@@ -239,7 +239,7 @@ public class Battlefield extends World {
     public void wave4() {
         Battlefield world = this;
         //total enemies: 30
-        world.addObject(new DelayedSpawner(0, 100, 50), 0, 0);
+        world.addObject(new DelayedSpawner2(0, 100, 50), 0, 0);
         world.addObject(new DelayedSpawner(0, 300, 50), 0, 0);
         world.addObject(new DelayedSpawner(0, 500, 50), 0, 0);
         world.addObject(new DelayedSpawner(0, 100, 200), 0, 0);
@@ -257,8 +257,8 @@ public class Battlefield extends World {
         world.addObject(new DelayedSpawner2(0, 50, 50), 0, 0);
         world.addObject(new DelayedSpawner2(60, 150, 50), 0, 0);
         world.addObject(new DelayedSpawner2(120, 250, 50), 0, 0);
-        world.addObject(new DelayedSpawner2(180, 350, 50), 0, 0);
-        world.addObject(new DelayedSpawner2(240, 450, 50), 0, 0);
+        world.addObject(new DelayedSpawner(180, 350, 50), 0, 0);
+        world.addObject(new DelayedSpawner(240, 450, 50), 0, 0);
     }
     
     public void wave6() {
@@ -317,31 +317,31 @@ public class Battlefield extends World {
         Battlefield world = this;
         //total enemies: 90
         world.addObject(new DelayedSpawner2(0, 500, 50), 0, 0);
-        world.addObject(new DelayedSpawner2(60, 500, 125), 0, 0);
+        world.addObject(new DelayedSpawner(60, 500, 125), 0, 0);
         world.addObject(new DelayedSpawner2(120, 500, 200), 0, 0);
-        world.addObject(new DelayedSpawner2(240, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner(240, 500, 275), 0, 0);
         world.addObject(new DelayedSpawner2(200, 500, 350), 0, 0);
         
-        world.addObject(new DelayedSpawner2(360, 500, 50), 0, 0);
+        world.addObject(new DelayedSpawner(360, 500, 50), 0, 0);
         world.addObject(new DelayedSpawner2(420, 500, 125), 0, 0);
-        world.addObject(new DelayedSpawner2(480, 500, 200), 0, 0);
+        world.addObject(new DelayedSpawner(480, 500, 200), 0, 0);
         world.addObject(new DelayedSpawner2(540, 500, 275), 0, 0);
-        world.addObject(new DelayedSpawner2(600, 500, 350), 0, 0);
+        world.addObject(new DelayedSpawner(600, 500, 350), 0, 0);
         
         world.addObject(new DelayedSpawner2(660, 500, 50), 0, 0);
-        world.addObject(new DelayedSpawner2(720, 500, 125), 0, 0);
+        world.addObject(new DelayedSpawner(720, 500, 125), 0, 0);
         world.addObject(new DelayedSpawner2(780, 500, 200), 0, 0);
-        world.addObject(new DelayedSpawner2(840, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner(840, 500, 275), 0, 0);
         world.addObject(new DelayedSpawner2(900, 500, 350), 0, 0);
     }
     
     public void wave9() {
         Battlefield world = this;
         spawnFinalBoss();
-        world.addObject(new DelayedSpawner2(360, 500, 50), 0, 0);
-        world.addObject(new DelayedSpawner2(420, 500, 125), 0, 0);
-        world.addObject(new DelayedSpawner2(480, 500, 200), 0, 0);
-        world.addObject(new DelayedSpawner2(540, 500, 275), 0, 0);
+        world.addObject(new DelayedSpawner(360, 500, 50), 0, 0);
+        world.addObject(new DelayedSpawner(420, 500, 125), 0, 0);
+        world.addObject(new DelayedSpawner(480, 500, 200), 0, 0);
+        world.addObject(new DelayedSpawner(540, 500, 275), 0, 0);
         
         world.addObject(new DelayedSpawner2(660, 500, 50), 0, 0);
         world.addObject(new DelayedSpawner2(720, 500, 125), 0, 0);
